@@ -1,16 +1,23 @@
 
 import LoginForm from '@components/LoginForm';
 import { useAuth } from '@hooks/useAuth';
-import Home from '@pages/home';
-
+import  { useEffect } from 'react';
+import { useNavigate } from 'react-router';
+import Spinner from '@components/Spinner';
 function Login(){
-  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate()
+  const { isAuthenticated, isLoading } = useAuth();
   console.log(isAuthenticated);
-  if(isAuthenticated){
-    return <Home/>
-  }
+  useEffect(() => {
+      if(isAuthenticated){
+        navigate("/", { replace: true})
+      }
+  }, [isAuthenticated]);
+
   return (
-    <LoginForm/>
+    <>
+      {isLoading ? <Spinner/> : <LoginForm/>}
+    </>
   )
 };
 

@@ -7,7 +7,8 @@ type ProviderProps = {
 };
 const initialState: AuthState = {
     isAuthenticated: false,
-    user: null
+    user: null,
+    isLoading: true
 }
 
 const AuthContext = createContext<{

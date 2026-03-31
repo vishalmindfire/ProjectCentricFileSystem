@@ -3,6 +3,7 @@ import { type User } from "@entities/User";
 interface AuthState {
   isAuthenticated: boolean,
   user: User | null,
+  isLoading: boolean
 }
 
 type AuthAction =

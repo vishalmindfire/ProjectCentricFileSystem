@@ -21,11 +21,12 @@ export const login = async (
             method : 'POST',
             headers : { 'Content-Type': 'application/json' },
             body : JSON.stringify(bodyContent),
+            credentials: 'include'
         });
 
         const data = await response.json();
-        
-        if(!response.ok){
+        console.log(data);
+        if(!response.ok || !data.success){
           throw new Error('Login Failed');
         }
         dispatch({type: 'LOGIN', payload: {user : data.user}});

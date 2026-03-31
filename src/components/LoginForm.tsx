@@ -32,7 +32,6 @@ function LoginForm(){
             alert('Login failed. Please check your credentials and try again.');
             return { success: false, user: null };
         });
-        console.log("Login successfull");
         console.log(state);
         if(response.success){
            navigate('/projects', { replace: true });
