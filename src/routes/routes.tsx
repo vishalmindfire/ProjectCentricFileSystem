@@ -1,22 +1,29 @@
 import Layout from "@components/Layout";
-import LoginForm from "@components/LoginForm";
+import ProtectedLayout from "@components/ProtectedLayout";
 import Home from "@pages/home";
+import Login from "@pages/login";
+
 import type { RouteObject } from "react-router";
 export const routes:RouteObject = 
   {
     element: <Layout />,
     children: [
       {
-        path: "/",
-        Component: Home,
+        Component: ProtectedLayout,
+        children: [ 
+          {
+            path: "/projects",
+            element: <div>Project page</div>
+          },
+          {
+            path: "/",
+            Component: Home
+          }
+        ]
       },
       {
         path: "/login",
-        Component: LoginForm
+        Component: Login
       },
-      {
-        path: "/projects",
-        element: <div>Project page</div>
-      }
     ],
   }

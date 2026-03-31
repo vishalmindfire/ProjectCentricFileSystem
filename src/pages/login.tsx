@@ -1,10 +1,15 @@
 
 import LoginForm from '@components/LoginForm';
+import { useAuth } from '@hooks/useAuth';
+import Home from '@pages/home';
 
-//const ThrowError = () => { throw new Error('Test'); };
 function Login(){
+  const { isAuthenticated } = useAuth();
+  if(isAuthenticated){
+    return <Home/>
+  }
   return (
-        <LoginForm/>
+    <LoginForm/>
   )
 };
 

@@ -2,7 +2,7 @@ import { type User } from "@entities/User";
 
 interface AuthState {
   isAuthenticated: boolean,
-  user: User | null
+  user: User | null,
 }
 
 type AuthAction =
@@ -12,9 +12,9 @@ type AuthAction =
 const AuthReducer = (state: AuthState, action: AuthAction): AuthState => {
     switch(action.type){
         case 'LOGIN':
-            return { isAuthenticated: true, user: action.payload.user}
+            return { ...state, isAuthenticated: true, user: action.payload.user}
         case 'LOGOUT':
-            return { isAuthenticated: false, user: null};
+            return { ...state, isAuthenticated: false, user: null};
         default:
             return state;
     }
