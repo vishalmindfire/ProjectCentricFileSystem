@@ -1,6 +1,6 @@
 .app-container {
   display: grid;
-  grid-template-columns: 200px 1fr; 
+  grid-template-columns: 200px 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "header header"
@@ -11,8 +11,8 @@
   background-color: #e2e5e6;
 }
 
-.main { 
-    grid-area: main; 
+.main {
+  grid-area: main;
 }
 .main-full {
   grid-column: 1/-1;

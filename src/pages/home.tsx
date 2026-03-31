@@ -1,11 +1,11 @@
-function Home(): React.ReactNode{
+function Home(): React.ReactNode {
   return (
-        <>
-            <div>
-                <h1>Home Page</h1>
-            </div>
-        </>
-  )
-};
+    <>
+      <div>
+        <h1>Home Page</h1>
+      </div>
+    </>
+  );
+}
 
 export default Home;

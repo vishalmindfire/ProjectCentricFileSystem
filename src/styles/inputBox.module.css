@@ -4,26 +4,26 @@
   padding-top: 10px;
 }
 .input-box-label {
-    color: black;
-    font-size: 24px;
-    text-align: left;
+  color: black;
+  font-size: 24px;
+  text-align: left;
 }
-.input-box-label, 
+.input-box-label,
 .input-box-input {
-    width: 380px;
-    height: 35px;
-    margin: 5px auto;
+  width: 380px;
+  height: 35px;
+  margin: 5px auto;
 }
 .input-box-button {
-    width: 185px;
-    font-size: 20px;
-    font-weight: 600;
-    background: #241c51;
-    color: #e0e0e0;
+  width: 185px;
+  font-size: 20px;
+  font-weight: 600;
+  background: #241c51;
+  color: #e0e0e0;
 }
 .input-box-error {
-    text-align: left;
-    width: 380px;
-    margin: 5px auto;
-    color: #db4141;
+  text-align: left;
+  width: 380px;
+  margin: 5px auto;
+  color: #db4141;
 }

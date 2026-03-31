@@ -1,7 +1,7 @@
 interface ImportMetaEnv {
-    VITE_API_URL: string;
+  VITE_API_URL: string;
 }
 
 interface ImportMeta {
-    env: ImportMetaEnv;
+  env: ImportMetaEnv;
 }
