@@ -29,9 +29,10 @@
       "@pages/*": ["pages/*"],
       "@routes/*": ["routes/*"],
       "@hooks/*": ["hooks/*"],
-      "@context/*": ["context/*"],
+      "@contexts/*": ["contexts/*"],
+      "@reducers/*": ["reducers/*"],
       "@services/*": ["services/*"],
-      "@types/*": ["types/*"],
+      "@entities/*": ["entities/*"],
       "@styles/*": ["styles/*"]
     }
   },

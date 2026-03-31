@@ -1,5 +1,7 @@
 .menu {
     grid-area: sidebar;
+    background-color: #f4e1e1;
+    border-radius: 10px;
 }
 .menu.menu-collapsed{
     display: none;

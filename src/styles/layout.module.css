@@ -8,8 +8,12 @@
     "footer footer";
   min-height: 100vh;
   min-height: 100svh;
+  background-color: #e2e5e6;
 }
 
 .main { 
     grid-area: main; 
+}
+.main-full {
+  grid-column: 1/-1;
 }
