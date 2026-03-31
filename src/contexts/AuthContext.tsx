@@ -2,6 +2,9 @@ import React, { createContext, useReducer } from 'react';
 import { type AuthState, type AuthAction, AuthReducer } from '@reducers/authReducer';
 import { isAuthenticated } from '@services/authService';   
 
+type ProviderProps = {
+  children: React.ReactNode; 
+};
 const initialState: AuthState = {
     isAuthenticated: false,
     user: null
@@ -15,16 +18,17 @@ const AuthContext = createContext<{
     dispatch: () => null,
 });
 
-const AuthProvider = (children:React.ReactNode) => {
+const AuthProvider = (props: ProviderProps) : React.ReactNode=> {
     const [state, dispatch] = useReducer(AuthReducer, initialState);
     React.useEffect(() => {
+        console.log(state);
         if(!state.isAuthenticated){
             isAuthenticated(dispatch);
         }
     }, []);
 
     return <AuthContext.Provider value={{state,dispatch}}>
-            {children}
+            {props.children}
            </AuthContext.Provider>
 }
 
