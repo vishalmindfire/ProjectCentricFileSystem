@@ -5,6 +5,7 @@ import Home from '@pages/home';
 
 function Login(){
   const { isAuthenticated } = useAuth();
+  console.log(isAuthenticated);
   if(isAuthenticated){
     return <Home/>
   }

@@ -37,7 +37,7 @@ export const login = async (
 }
 
 export const logout = async (dispatch: React.Dispatch<AuthAction>): Promise<void> => {
-  await fetch('/api/logout', { method: 'POST' });
+  await fetch('/logout', { method: 'POST' });
   dispatch({ type: 'LOGOUT' });
 };
 
@@ -45,8 +45,14 @@ export const isAuthenticated = async (
   dispatch: React.Dispatch<AuthAction>
 ): Promise<boolean> => {
   try {
-    const response = await fetch('/checkAuth');
-    if (response.status === 401) {
+    const response = await fetch(`${API_URL}/checkAuth`,{
+      method: "GET",
+      credentials: 'include', 
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    if (response.status === 401 || response.status === 403) {
       dispatch({ type: 'LOGOUT' });
       return false;
     }
