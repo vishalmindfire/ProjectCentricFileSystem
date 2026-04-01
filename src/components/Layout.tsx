@@ -6,6 +6,7 @@ import Footer from "@components/Footer";
 import Sidebar from "@components/Sidebar";
 import layoutModule from "@styles/layout.module.css";
 import { AuthProvider } from "@contexts/AuthContext";
+
 export default function Layout() {
   const [isMenuCollapsed, setIsMenuCollapsed] = useState<boolean>(false);
   const mainClasses = cx(layoutModule.main, {

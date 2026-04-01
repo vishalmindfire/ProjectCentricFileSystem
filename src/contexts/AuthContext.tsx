@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from "react";
+import Spinner from "@components/Spinner";
 import {
   type AuthState,
   type AuthAction,
@@ -33,7 +34,7 @@ const AuthProvider = (props: ProviderProps): React.ReactNode => {
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
-      {props.children}
+      {state.isAuthenticated && state.isLoading ? <Spinner/> : props.children}
     </AuthContext.Provider>
   );
 };
