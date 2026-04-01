@@ -1,11 +1,7 @@
-import React, { createContext, useReducer } from "react";
-import Spinner from "@components/Spinner";
-import {
-  type AuthState,
-  type AuthAction,
-  AuthReducer,
-} from "@reducers/authReducer";
-import { isAuthenticated } from "@services/authService";
+import React, { createContext, useReducer } from 'react';
+import Spinner from '@components/Spinner';
+import { type AuthState, type AuthAction, AuthReducer } from '@reducers/authReducer';
+import { isAuthenticated } from '@services/authService';
 
 type ProviderProps = {
   children: React.ReactNode;
@@ -34,15 +30,9 @@ const AuthProvider = (props: ProviderProps): React.ReactNode => {
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
-      {state.isAuthenticated && state.isLoading ? <Spinner/> : props.children}
+      {state.isAuthenticated && state.isLoading ? <Spinner /> : props.children}
     </AuthContext.Provider>
   );
 };
 
-export {
-  type AuthState,
-  type AuthAction,
-  AuthContext,
-  AuthReducer,
-  AuthProvider,
-};
+export { type AuthState, type AuthAction, AuthContext, AuthReducer, AuthProvider };

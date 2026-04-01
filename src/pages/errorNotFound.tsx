@@ -1,4 +1,4 @@
-import type React from "react";
+import type React from 'react';
 
 function ErrorNotFoundPage(): React.ReactNode {
   return (
@@ -7,6 +7,6 @@ function ErrorNotFoundPage(): React.ReactNode {
       <p>Resource you are looking for is not present.</p>
     </div>
   );
-};
+}
 
 export default ErrorNotFoundPage;

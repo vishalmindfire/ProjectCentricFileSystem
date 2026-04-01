@@ -1,22 +1,18 @@
-import headerModule from "@styles/header.module.css";
-import { useNavigate } from "react-router";
+import headerModule from '@styles/header.module.css';
+import { useNavigate } from 'react-router';
 interface HeaderProps {
   showHideMenu: (show: boolean) => void;
   isHidden: boolean;
   title?: string;
 }
 
-const Header = ({
-  showHideMenu,
-  isHidden,
-  title = "Project Centric File System",
-}: HeaderProps) => {
+const Header = ({ showHideMenu, isHidden, title = 'Project Centric File System' }: HeaderProps) => {
   const navigate = useNavigate();
   const handleMenuCollapseClick = () => {
     showHideMenu(!isHidden);
   };
   const logInClickHandler = () => {
-    navigate("/login", { replace: true });
+    navigate('/login', { replace: true });
   };
   return (
     <header className={headerModule.header}>

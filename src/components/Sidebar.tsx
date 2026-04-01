@@ -1,5 +1,5 @@
-import cx from "classnames";
-import sidebarModule from "@styles/sidebar.module.css";
+import cx from 'classnames';
+import sidebarModule from '@styles/sidebar.module.css';
 
 type sidebarProps = {
   isMenuCollapsed: boolean;

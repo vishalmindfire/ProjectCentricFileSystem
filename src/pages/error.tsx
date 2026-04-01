@@ -1,4 +1,4 @@
-import type React from "react";
+import type React from 'react';
 
 function ErrorPage(): React.ReactNode {
   return (
@@ -7,6 +7,6 @@ function ErrorPage(): React.ReactNode {
       <p>We're sorry, but an error occurred while loading the page.</p>
     </div>
   );
-};
+}
 
 export default ErrorPage;

@@ -3,9 +3,9 @@
   grid-template-columns: 200px 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
-    "header header"
-    "sidebar main"
-    "footer footer";
+    'header header'
+    'sidebar main'
+    'footer footer';
   min-height: 100vh;
   min-height: 100svh;
   background-color: #e2e5e6;

@@ -1,4 +1,4 @@
-import { type User } from "@entities/User";
+import { type User } from '@entities/User';
 
 interface AuthState {
   isAuthenticated: boolean;
@@ -6,15 +6,13 @@ interface AuthState {
   isLoading: boolean;
 }
 
-type AuthAction =
-  | { type: "LOGIN"; payload: { user: User } }
-  | { type: "LOGOUT" };
+type AuthAction = { type: 'LOGIN'; payload: { user: User } } | { type: 'LOGOUT' };
 
 const AuthReducer = (state: AuthState, action: AuthAction): AuthState => {
   switch (action.type) {
-    case "LOGIN":
+    case 'LOGIN':
       return { ...state, isAuthenticated: true, user: action.payload.user, isLoading: false };
-    case "LOGOUT":
+    case 'LOGOUT':
       return { ...state, isAuthenticated: false, user: null, isLoading: true };
     default:
       return state;

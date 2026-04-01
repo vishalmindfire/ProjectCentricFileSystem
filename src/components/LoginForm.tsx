@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext, useState } from 'react';
 
-import { login } from "@services/authService";
-import { AuthContext } from "@contexts/AuthContext";
-import InputBox from "@components/InputBox";
-import { useNavigate } from "react-router-dom";
+import { login } from '@services/authService';
+import { AuthContext } from '@contexts/AuthContext';
+import InputBox from '@components/InputBox';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const { state, dispatch } = useContext(AuthContext);
@@ -12,35 +12,29 @@ function LoginForm() {
   const [passwordError, setPasswordError] = useState<string | null>(null);
   const logIn = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const userEmail = document.getElementById("email") as HTMLInputElement;
-    const userPassword = document.getElementById(
-      "password",
-    ) as HTMLInputElement;
+    const userEmail = document.getElementById('email') as HTMLInputElement;
+    const userPassword = document.getElementById('password') as HTMLInputElement;
     if (!userEmail.value) {
-      setEmailError("Email is required");
+      setEmailError('Email is required');
       return;
     } else {
       setEmailError(null);
     }
     if (!userPassword.value) {
-      setPasswordError("Password is required");
+      setPasswordError('Password is required');
       return;
     } else {
       setPasswordError(null);
     }
 
-    const response = await login(
-      userEmail.value,
-      userPassword.value,
-      dispatch,
-    ).catch((err) => {
-      console.error("Login failed:", err);
-      alert("Login failed. Please check your credentials and try again.");
+    const response = await login(userEmail.value, userPassword.value, dispatch).catch((err) => {
+      console.error('Login failed:', err);
+      alert('Login failed. Please check your credentials and try again.');
       return { success: false, user: null };
     });
     console.log(state);
     if (response.success) {
-      navigate("/projects", { replace: true });
+      navigate('/projects', { replace: true });
     }
   };
   return (

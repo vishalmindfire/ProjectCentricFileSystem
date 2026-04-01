@@ -1,0 +1,26 @@
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 90%;
+    justify-content: space-between;
+}
+.projects-space {
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 calc(33.33% - 30px);
+    gap: 10px;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.projects-settings {
+    margin-top: auto;
+    align-self: flex-end;
+}
+
+.projects-settings input {
+    width: 100px;
+}
