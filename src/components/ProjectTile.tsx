@@ -3,7 +3,7 @@ import { deleteProject } from '@services/projectService';
 import { useContext, type MouseEvent } from 'react';
 import { ProjectContext } from '@contexts/ProjectContext';
 interface ProjectTileProps {
-  id: string;
+  id: number;
   name: string;
   description: string;
   filesCounts: number;
@@ -14,12 +14,12 @@ interface ProjectTileProps {
 
 const ProjectTile = (props: ProjectTileProps) => {
   const { dispatch } = useContext(ProjectContext);
-  const deleteProjectHandler = (id: string) => {
+  const deleteProjectHandler = (id: number) => {
         deleteProject(id,dispatch);
   }
 
   return (
-    <div className={projectTileModule.projectTile} id={props.id} onClick={props.onClick}>
+    <div className={projectTileModule.projectTile} id={props.id.toString()} onClick={props.onClick}>
       <div className={projectTileModule.projectTileHeader}>
         <h3 className={projectTileModule.projectTileName}>{props.name}</h3>
         <span id="delete-project" className={projectTileModule.projectDelete} onClick={() => {deleteProjectHandler(props.id)}}>Delete</span>

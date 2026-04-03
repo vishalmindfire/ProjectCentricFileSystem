@@ -1,8 +1,6 @@
 import React, { createContext, useReducer } from 'react';
-import Spinner from '@components/Spinner';
 import { type ProjectsState, type ProjectsAction, ProjectsReducer } from '@reducers/projectReducer';
 import { getProjects } from '@services/projectService';
-
 //import { getProjects } from "@services/projectService";
 
 type ProviderProps = {
@@ -11,7 +9,7 @@ type ProviderProps = {
 
 const initialState: ProjectsState = {
   projects: [],
-  isLoading: true,
+  isLoading: true
 };
 
 const ProjectContext = createContext<{
@@ -25,14 +23,15 @@ const ProjectContext = createContext<{
 const ProjectProvider = (props: ProviderProps): React.ReactNode => {
   const [state, dispatch] = useReducer(ProjectsReducer, initialState);
   React.useEffect(() => {
-    if (state.isLoading) {
-      getProjects(dispatch);
-    }
-  }, []);
+      const getAllProjects = async() =>{
+         await getProjects(dispatch);
+      }
+      getAllProjects();
+  }, [state.isLoading]);
 
   return (
     <ProjectContext.Provider value={{ projectsState: state, dispatch }}>
-      {state.isLoading ? <Spinner /> : props.children}
+      { props.children}
     </ProjectContext.Provider>
   );
 };

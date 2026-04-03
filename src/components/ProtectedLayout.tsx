@@ -11,7 +11,7 @@ function ProtectedRoute() {
   return (
     <ErrorProvider>
       <ErrorBoundary fallback={<ErrorPage />}>
-        \{!isAuthenticated ? <Login /> : <Outlet />}
+        {!isAuthenticated ? <Login /> : <Outlet />}
       </ErrorBoundary>
     </ErrorProvider>
   );
