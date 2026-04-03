@@ -1,10 +1,11 @@
 import {  fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { routes } from '@routes/routes';
+import * as ReactRouterDOM from 'react-router-dom';
 
 const mockedUseNavigate = jest.fn();
-jest.mock('react-router-dom', () => {
-  const originalModule = jest.requireActual('react-router-dom');
+jest.mock('react-router-dom', ()  => {
+  const originalModule = jest.requireActual('react-router-dom') as typeof ReactRouterDOM;
   return {
     ...originalModule,
     useNavigate: () => mockedUseNavigate,
