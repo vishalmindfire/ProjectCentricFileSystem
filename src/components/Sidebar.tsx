@@ -6,9 +6,9 @@ type sidebarProps = {
   isMenuCollapsed: boolean;
 };
 
-const Sidebar = ({ isMenuCollapsed}: sidebarProps) => {
+const Sidebar = ({ isMenuCollapsed }: sidebarProps) => {
   const navigate = useNavigate();
-  
+
   const menuClasses = cx(sidebarModule.menu, {
     [sidebarModule.menuCollapsed]: isMenuCollapsed,
   });
@@ -17,10 +17,22 @@ const Sidebar = ({ isMenuCollapsed}: sidebarProps) => {
       <nav className={sidebarModule.menuContainer}>
         <ul className={sidebarModule.menuList}>
           <li>
-            <a onClick= {()=> { navigate("/") }}>Home</a>
+            <a
+              onClick={() => {
+                navigate('/');
+              }}
+            >
+              Home
+            </a>
           </li>
           <li>
-            <a onClick= {()=> { navigate("/projects") }}>Projects</a>
+            <a
+              onClick={() => {
+                navigate('/projects');
+              }}
+            >
+              Projects
+            </a>
           </li>
           <li>
             <a href="/settings">Settings</a>

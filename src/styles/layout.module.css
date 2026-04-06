@@ -15,7 +15,7 @@
       'header header'
       'sidebar sidebar'
       'main main'
-      'footer footer'
+      'footer footer';
   }
 }
 
@@ -26,5 +26,4 @@
   grid-column: 1/-1;
 }
 @media screen and (max-width: 600px) {
-  
 }

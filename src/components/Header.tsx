@@ -27,7 +27,12 @@ const Header = ({ showHideMenu, title = 'Project Centric File System' }: HeaderP
   return (
     <header className={headerModule.header}>
       <div className={headerModule.headerContainer}>
-        <span className={headerModule.logo} onClick={ () => {showHideMenu();}}>
+        <span
+          className={headerModule.logo}
+          onClick={() => {
+            showHideMenu();
+          }}
+        >
           PCFS
         </span>
         <h1 className={headerModule.headerTitle}>{title}</h1>
@@ -35,7 +40,7 @@ const Header = ({ showHideMenu, title = 'Project Centric File System' }: HeaderP
         {isAuthenticated && <span onClick={logoutClickHandler}>Logout</span>}
       </div>
     </header>
-  )
-}
+  );
+};
 
 export default Header;

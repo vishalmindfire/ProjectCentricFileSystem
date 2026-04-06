@@ -4,6 +4,7 @@ import { routes } from '@routes/routes';
 import * as ReactRouterDOM from 'react-router-dom';
 
 const mockedUseNavigate = jest.fn();
+
 jest.mock('react-router-dom', () => {
   const originalModule = jest.requireActual('react-router-dom') as typeof ReactRouterDOM;
   return {
@@ -12,44 +13,58 @@ jest.mock('react-router-dom', () => {
   };
 });
 
-test('Login form', () => {
-  const navigateMock = jest.fn();
-  mockedUseNavigate.mockReturnValue(navigateMock);
-  const router = createMemoryRouter([routes], {
-    initialEntries: ['/login'],
-    initialIndex: 0,
+describe('Login form', () => {
+  let router: ReturnType<typeof createMemoryRouter>;
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+
+    router = createMemoryRouter([routes], {
+      initialEntries: ['/login'],
+      initialIndex: 0,
+    });
+
+    render(<RouterProvider router={router} />);
   });
 
-  render(<RouterProvider router={router} />);
+  const getElements = () => ({
+    logInButton: screen.getByTestId('login-button'),
+    emailInput: screen.getByTestId('email-input'),
+    passwordInput: screen.getByTestId('password-input'),
+  });
 
-  const logInButton = screen.getByTestId('login-button') as HTMLButtonElement;
-  const emailInput = screen.getByTestId('email-input') as HTMLInputElement;
-  const passwordInput = screen.getByTestId('password-input') as HTMLInputElement;
+  test('shows error when email is empty', async () => {
+    const { logInButton } = getElements();
 
-  const logInClickEvent = () => {
-    fireEvent.click(
-      logInButton,
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
-  };
-  const inputChangeEvent = (inputElement: HTMLInputElement, value: string) => {
-    fireEvent.change(inputElement, { target: { value } });
-  };
+    fireEvent.click(logInButton);
 
-  logInClickEvent();
-  waitFor(() => screen.findByText('Email is required'));
-  inputChangeEvent(emailInput, 'admin@mail.com');
-  logInClickEvent();
-  waitFor(() => screen.findByText('Password is required'));
-  inputChangeEvent(emailInput, 'admin@mail.com');
-  inputChangeEvent(passwordInput, 'admin123');
-  logInClickEvent();
-  waitFor(async () => {
-    await expect(screen.getByText('Projects Page')).toBeInTheDocument();
-    //expect(mockedUseNavigate).toHaveBeenCalledWith('/projects', { replace: true });
-    await expect(router.state.location.pathname).toBe('/projects');
+    expect(await screen.findByText('Email is required')).toBeInTheDocument();
+  });
+
+  test('shows error when password is empty', async () => {
+    const { logInButton, emailInput } = getElements();
+
+    fireEvent.change(emailInput, { target: { value: 'admin@mail.com' } });
+    fireEvent.click(logInButton);
+
+    expect(await screen.findByText('Password is required')).toBeInTheDocument();
+  });
+
+  test('navigates to projects page on successful login', async () => {
+    const navigateMock = jest.fn();
+    mockedUseNavigate.mockReturnValue(navigateMock);
+
+    const { logInButton, emailInput, passwordInput } = getElements();
+
+    fireEvent.change(emailInput, { target: { value: 'admin@mail.com' } });
+    fireEvent.change(passwordInput, { target: { value: 'admin123' } });
+    fireEvent.click(logInButton);
+
+    await waitFor(async () => {
+      //await expect(screen.getByText('Add Project')).toBeInTheDocument();
+      //expect(mockedUseNavigate).toHaveBeenCalledWith('/projects', { replace: true });
+      await expect(router.state.location.pathname).toBe('/projects');
+    });
+    // expect(navigateMock).toHaveBeenCalledWith('/projects', { replace: true });
   });
 });

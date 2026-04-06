@@ -9,18 +9,23 @@ import { AuthProvider } from '@contexts/AuthContext';
 
 export default function Layout() {
   const [isMenuCollapsed, setIsMenuCollapsed] = useState<boolean>(false);
-  
-  useEffect(() => {
 
-  },[isMenuCollapsed])
+  useEffect(() => {}, [isMenuCollapsed]);
   return (
     <AuthProvider>
       <div className={layoutModule.appContainer}>
-        <Header showHideMenu={() => { setIsMenuCollapsed(!isMenuCollapsed)}} isHidden={isMenuCollapsed} />
+        <Header
+          showHideMenu={() => {
+            setIsMenuCollapsed(!isMenuCollapsed);
+          }}
+          isHidden={isMenuCollapsed}
+        />
         <Sidebar isMenuCollapsed={isMenuCollapsed} />
-        <main className={cx(layoutModule.main, {
-          [layoutModule.mainFull]: isMenuCollapsed,
-        })}>
+        <main
+          className={cx(layoutModule.main, {
+            [layoutModule.mainFull]: isMenuCollapsed,
+          })}
+        >
           <Outlet />
         </main>
         <Footer />

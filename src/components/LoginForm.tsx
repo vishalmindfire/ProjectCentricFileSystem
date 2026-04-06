@@ -6,7 +6,7 @@ import InputBox from '@components/InputBox';
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
-  const { state, dispatch } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
   const [emailError, setEmailError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
@@ -32,7 +32,6 @@ function LoginForm() {
       alert('Login failed. Please check your credentials and try again.');
       return { success: false, user: null };
     });
-    console.log(state);
     if (response.success) {
       navigate('/projects', { replace: true });
     }
