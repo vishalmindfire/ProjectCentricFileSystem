@@ -1,9 +1,10 @@
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import FileList from '@components/FileList';
 import projectModule from '@styles/project.module.css';
 import { ProjectContext } from '@contexts/ProjectContext';
 import { useContext, useEffect } from 'react';
-import { getFiles, getProject } from '@services/projectService';
+import { getProject } from '@services/projectService';
+import {  getFiles } from '@services/fileService';
 import Spinner from '@components/Spinner';
 import { useProject } from '@hooks/useProject';
 import { useFiles } from '@hooks/useFiles';
@@ -15,7 +16,8 @@ export default function ProjectPage() {
     const files = useFiles(projectId);
     const { project, isLoading } = useProject(projectId);
     const { dispatch } = useContext(ProjectContext);
-    
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchFiles = async() => {
             await getProject(projectId, dispatch);
@@ -23,6 +25,10 @@ export default function ProjectPage() {
         }
         fetchFiles();    
     },[isLoading])
+
+    const fileUploadHandler = () => {
+        navigate('files');
+    }
 
     return (
         <>        
@@ -43,10 +49,10 @@ export default function ProjectPage() {
                             {project[0].filesCount}
                         </span>
                     </div>
-                    <div className={projectModule.projectFilesSettings}>
-                        <InputBox type='button' value='Add Files'/>
-                    </div>
                     <div className={projectModule.projectFilesSection}>
+                        <div className={projectModule.projectFilesUpload}>
+                            <InputBox type="button" onClick={fileUploadHandler} value="Add new files"/>
+                        </div>
                         <div className={projectModule.projectFilesBody}>
                             <FileList files={files} projectId={projectId} isLoading={isLoading}></FileList>
                         </div>

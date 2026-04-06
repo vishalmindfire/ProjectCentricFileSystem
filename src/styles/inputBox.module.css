@@ -14,16 +14,19 @@
   height: 35px;
   margin: 5px auto;
 }
-.input-box-button {
+.input-box-button, .input-box-submit {
   width: 185px;
   font-size: 20px;
   font-weight: 600;
-  background: #241c51;
-  color: #e0e0e0;
+  background: var(--bg-secondary-color);
+  color: var(--secondary-color);
+  &:hover {
+    background-color: var(--bg-color);
+  }
 }
 .input-box-error {
   text-align: left;
   width: 380px;
   margin: 5px auto;
-  color: #db4141;
+  color: var(--error-color);
 }

@@ -1,6 +1,6 @@
 import fileListModule from "@styles/fileList.module.css";
 import { type FileInfo } from "@entities/File";
-import { deleteFile } from "@services/projectService";
+import { deleteFile } from "@services/fileService";
 import { ProjectContext } from "@contexts/ProjectContext";
 import { useContext, useEffect } from "react";
 
@@ -12,8 +12,8 @@ type FileListProps = {
 
 const FileList = (props: FileListProps) => {
     const { dispatch } = useContext(ProjectContext);
-    //const dateFormatter = new Intl.DateTimeFormat("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' });
     const removeFileHandler = (id: number, fileId : number) => {
+        
         deleteFile(id, fileId, dispatch);
     }
 
@@ -27,14 +27,24 @@ const FileList = (props: FileListProps) => {
  
     return (
         <ul className={fileListModule.fileList}>
+            <li key="header" className={fileListModule.fileListHeader}>
+                <div>Name</div>
+                <div>Size</div>
+                <div>Upload Date</div>
+                <div></div>
+            </li>
             {props.files.map((file) => (
                 <li
                     key={file.id}
                     className={fileListModule.fileListItem}
                 >
                     <div className={fileListModule.fileName}>{file.name}</div>
-                    {file.size && <div className={fileListModule.fileSize}>{file.size}</div>}
-                    {file.uploadDate && <div className={fileListModule.Filemodified}>{file.uploadDate.toString()}</div>}
+                    {file.size && <div className={fileListModule.fileSize}>{file.size}B</div>}
+                    {file.uploadDate && <div className={fileListModule.Filemodified}>{(new Date(file.uploadDate)).toLocaleDateString('en-US', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                        })}</div>}
                     <button className={fileListModule.deleteFile} onClick={() => removeFileHandler(props.projectId, file.id)}>Delete</button>
                 </li>
             ))}

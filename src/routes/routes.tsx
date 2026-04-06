@@ -8,6 +8,7 @@ import Project from '@pages/project';
 import ErrorPage from '@pages/error';
 import ErrorNotFoundPage from 'pages/errorNotFound';
 import type { RouteObject } from 'react-router';
+import Files from '@pages/files';
 export const routes: RouteObject = {
   element: <Layout />,
   errorElement: <ErrorPage />,
@@ -25,7 +26,16 @@ export const routes: RouteObject = {
             },
             {
               path: ':id',
-              Component: Project
+              children : [
+                {
+                  index: true,
+                  Component: Project,
+                },
+                {
+                  path: 'files',
+                  Component: Files
+                }
+              ]
             }
           ]
         },

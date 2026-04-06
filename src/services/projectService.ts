@@ -1,11 +1,11 @@
 import { type ProjectsAction } from '@contexts/ProjectContext';
 import { type Project } from '@entities/Project';
-import { type FileInfo } from '@entities/File';
 import logErrorToServer from '@services/errorLogger';
 import { type ErrorDetail } from '@entities/Error';
 
 const API_URL = import.meta.env.VITE_API_URL;
-const apiEnabled = false;
+const apiEnabled = import.meta.env.VITE_API_ENABLED === true;
+console.log(apiEnabled === false);
 interface createdResponse {
   success: boolean;
   project: { id: number; name: string; description: string };
@@ -20,10 +20,6 @@ interface projectsResponse {
     projects: Project[] | []
 }
 
-interface filesResponse {
-    success: boolean,
-    files: FileInfo[] | []
-}
 export const createProject = async (
   name: string,
   description: string,
@@ -157,58 +153,6 @@ export const getProject = async (id: number,dispatch: React.Dispatch<ProjectsAct
         throw error;
     }
 }
-
-export const getFiles = async (id: Project["id"], dispatch: React.Dispatch<ProjectsAction>) : Promise<filesResponse> => {
-    try {
-        let files: FileInfo[] | [] = [];
-        if(apiEnabled){
-            const response = await fetch(`${API_URL}/project/${id}/files`, {
-            method: 'GET',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            });
-            const data = await response.json();
-            if (!response.ok || !data.success) {
-                throw new Error('Project creation Failed');
-            }
-            files = data.files;
-        }
-        const payload = {
-            projectId: id,
-            files: files
-        }
-        dispatch({ type: 'ADD_FILE', payload: payload});
-        return { success: true, files : files};
-  } catch (error) {
-    logError(error, "Get Files Call");
-    throw error;
-  }   
-}
-
-export const deleteFile = async (id: Project["id"], fileId: FileInfo["id"], dispatch: React.Dispatch<ProjectsAction>): Promise<boolean> => {
-    
-    try {
-        if(apiEnabled){
-            const response = await fetch(`${API_URL}/project/${id}/file/${fileId}`, {
-                method: 'DELETE',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            if (response.status === 401 || response.status === 403) {
-             throw new Error("Project deletion failed");
-            }
-        }
-    dispatch({ type: 'REMOVE_FILE', payload: { projectId: id, fileId: fileId }});
-    return true;
-  } catch (error) {
-    logError(error, "Remove Project Call");
-    throw error;
-  }
-};
 
 function logError(error: unknown, stack: string): void{
     const errorDetail: ErrorDetail = {

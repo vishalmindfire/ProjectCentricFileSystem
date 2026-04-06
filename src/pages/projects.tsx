@@ -45,6 +45,7 @@ function Projects(): React.ReactNode {
           {
             projects.length && projects?.map( (project) => {
               return <ProjectTile
+                  key={project.id}
                   id={project.id}
                   name={project.name}
                   description={project.description}

@@ -1,0 +1,16 @@
+.files-container {
+    display: flex;
+    flex-direction: row;
+
+    .files-settings{
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 15px;
+
+    }
+    .files-section{
+        width: calc(100% - 300px);
+    }
+}
