@@ -1,5 +1,5 @@
-.project-form-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+.project-form-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }

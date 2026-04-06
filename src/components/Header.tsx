@@ -22,10 +22,10 @@ const Header = ({ showHideMenu, isHidden, title = 'Project Centric File System' 
   };
   const logoutClickHandler = async () => {
     const response = await logout(dispatch);
-    if(response){
+    if (response) {
       navigate('/');
     }
-  }
+  };
   return (
     <header className={headerModule.header}>
       <div className={headerModule.headerContainer}>
@@ -33,8 +33,8 @@ const Header = ({ showHideMenu, isHidden, title = 'Project Centric File System' 
           PCFS
         </span>
         <h1 className={headerModule.headerTitle}>{title}</h1>
-        { !isAuthenticated && <span onClick={logInClickHandler}>Login</span> }
-        { isAuthenticated && <span onClick={logoutClickHandler}>Logout</span>}
+        {!isAuthenticated && <span onClick={logInClickHandler}>Login</span>}
+        {isAuthenticated && <span onClick={logoutClickHandler}>Logout</span>}
       </div>
     </header>
   );

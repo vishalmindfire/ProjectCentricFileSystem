@@ -6,17 +6,19 @@ interface Props {
   label: string;
 }
 
-const ProgressBar = ({ value , max, label } : Props) => {
+const ProgressBar = ({ value, max, label }: Props) => {
   const completedWidth = (value / max) * 100;
   return (
     <div className={progressBarModule.progressBar} aria-labelledby="progress-bar-label">
-      <span id={progressBarModule.progressBarLabel}>{label}: {value}%</span>
-      <div 
-        className={progressBarModule.progressBarCompleted} 
+      <span id={progressBarModule.progressBarLabel}>
+        {label}: {value}%
+      </span>
+      <div
+        className={progressBarModule.progressBarCompleted}
         style={{ width: `${completedWidth}%` }}
       />
     </div>
   );
-}   
+};
 
 export default ProgressBar;

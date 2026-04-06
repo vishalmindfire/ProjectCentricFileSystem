@@ -30,22 +30,24 @@ function ProjectForm(props: Props) {
       setDescError(null);
     }
     //console.log(dispatch);
-    const response = await createProject(projectName.value, projectDesc.value, dispatch).catch((err) => {
-      console.error('Login failed:', err);
-      return { success: false, user: null };
-    });
+    const response = await createProject(projectName.value, projectDesc.value, dispatch).catch(
+      (err) => {
+        console.error('Login failed:', err);
+        return { success: false, user: null };
+      }
+    );
 
     if (response.success) {
-      if(props.inModal && props.onClose){
+      if (props.inModal && props.onClose) {
         props.onClose();
       }
     }
   };
   return (
     <form onSubmit={createProjectHandler} className={projectFormModule.projectForm}>
-        <div className={projectFormModule.projectFormHeader}>
-          {!props.inModal && <h1>Create Project</h1> }
-        </div>
+      <div className={projectFormModule.projectFormHeader}>
+        {!props.inModal && <h1>Create Project</h1>}
+      </div>
 
       <div className={projectFormModule.projectFormBody}>
         <InputBox

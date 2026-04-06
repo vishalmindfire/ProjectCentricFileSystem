@@ -9,7 +9,7 @@ type ProviderProps = {
 
 const initialState: ProjectsState = {
   projects: [],
-  isLoading: true
+  isLoading: true,
 };
 
 const ProjectContext = createContext<{
@@ -23,15 +23,15 @@ const ProjectContext = createContext<{
 const ProjectProvider = (props: ProviderProps): React.ReactNode => {
   const [state, dispatch] = useReducer(ProjectsReducer, initialState);
   React.useEffect(() => {
-      const getAllProjects = async() =>{
-         await getProjects(dispatch);
-      }
-      getAllProjects();
+    const getAllProjects = async () => {
+      await getProjects(dispatch);
+    };
+    getAllProjects();
   }, [state.isLoading]);
 
   return (
     <ProjectContext.Provider value={{ projectsState: state, dispatch }}>
-      { props.children}
+      {props.children}
     </ProjectContext.Provider>
   );
 };

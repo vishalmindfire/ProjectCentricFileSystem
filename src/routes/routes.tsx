@@ -22,26 +22,26 @@ export const routes: RouteObject = {
           children: [
             {
               index: true,
-              Component : Projects
+              Component: Projects,
             },
             {
               path: ':id',
-              children : [
+              children: [
                 {
                   index: true,
                   Component: Project,
                 },
                 {
                   path: 'files',
-                  Component: Files
-                }
-              ]
-            }
-          ]
+                  Component: Files,
+                },
+              ],
+            },
+          ],
         },
         {
-              path: '/projects/:id',
-              Component: Project
+          path: '/projects/:id',
+          Component: Project,
         },
         {
           path: '/',

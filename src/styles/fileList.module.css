@@ -1,38 +1,39 @@
 .file-list {
-    display: flex;
-    flex-direction: column;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 15px;
 }
 .file-list-header {
-    background-color: var(--bg-color);
+  background-color: var(--bg-color);
 
-    div {
-        padding: 5px;
-        text-align: center;
-    }
+  div {
+    padding: 5px;
+    text-align: center;
+  }
 }
-.file-list-header, .file-list-item {
-    display: flex;
-    flex-direction: row;
-    margin-right: 10px;
-    justify-content: space-between;
-    margin: 5px;
+.file-list-header,
+.file-list-item {
+  display: flex;
+  flex-direction: row;
+  margin-right: 10px;
+  justify-content: space-between;
+  margin: 5px;
 
-    .file-name {
-        max-width: 240px;
+  .file-name {
+    max-width: 240px;
+  }
+  .delete-file {
+    height: 30px;
+    width: 100px;
+    font-size: 16px;
+    font-weight: 300;
+    padding: 5px;
+    background: var(--bg-secondary-color);
+    color: var(--secondary-color);
+    &:hover {
+      background-color: var(--bg-color);
     }
-    .delete-file {
-        height: 30px;
-        width: 100px;
-        font-size: 16px;
-        font-weight: 300;
-        padding: 5px;
-        background: var(--bg-secondary-color);
-        color: var(--secondary-color);
-        &:hover {
-            background-color: var(--bg-color);
-        }
-    }
+  }
 }

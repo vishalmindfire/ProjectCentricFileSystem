@@ -38,7 +38,7 @@ export const login = async (
 };
 
 export const logout = async (dispatch: React.Dispatch<AuthAction>): Promise<boolean> => {
-  await fetch(`${API_URL}/logout`, { method: 'GET',credentials: 'include', });
+  await fetch(`${API_URL}/logout`, { method: 'GET', credentials: 'include' });
   dispatch({ type: 'LOGOUT' });
   return true;
 };

@@ -1,13 +1,13 @@
 .progress-bar {
-    border: 1px solid silver;
-    background: #ededed;
+  border: 1px solid silver;
+  background: #ededed;
 
-    .progress-bar-completed{
-        background-color : #8787f7;
-        height : 24px;
-        text-align: center;
-        line-height: 24px;
-        font-family: 'sans-serif';
-        transition: 0.3s;
-    }
+  .progress-bar-completed {
+    background-color: #8787f7;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    font-family: 'sans-serif';
+    transition: 0.3s;
+  }
 }

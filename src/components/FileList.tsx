@@ -1,55 +1,58 @@
-import fileListModule from "@styles/fileList.module.css";
-import { type FileInfo } from "@entities/File";
-import { deleteFile } from "@services/fileService";
-import { ProjectContext } from "@contexts/ProjectContext";
-import { useContext, useEffect } from "react";
+import fileListModule from '@styles/fileList.module.css';
+import { type FileInfo } from '@entities/File';
+import { deleteFile } from '@services/fileService';
+import { ProjectContext } from '@contexts/ProjectContext';
+import { useContext, useEffect } from 'react';
 
 type FileListProps = {
-    files: FileInfo[];
-    projectId: number;
-    isLoading: boolean;
+  files: FileInfo[];
+  projectId: number;
+  isLoading: boolean;
 };
 
 const FileList = (props: FileListProps) => {
-    const { dispatch } = useContext(ProjectContext);
-    const removeFileHandler = (id: number, fileId : number) => {
-        
-        deleteFile(id, fileId, dispatch);
-    }
+  const { dispatch } = useContext(ProjectContext);
+  const removeFileHandler = (id: number, fileId: number) => {
+    deleteFile(id, fileId, dispatch);
+  };
 
-    useEffect( () => {
+  useEffect(() => {}, [props.files]);
 
-    },[props.files])
+  if (!props.files || props.files.length === 0) {
+    return <div className={fileListModule.empty}>No files found</div>;
+  }
 
-    if (!props.files || props.files.length === 0) {
-        return <div className={fileListModule.empty}>No files found</div>;
-    }
- 
-    return (
-        <ul className={fileListModule.fileList}>
-            <li key="header" className={fileListModule.fileListHeader}>
-                <div>Name</div>
-                <div>Size</div>
-                <div>Upload Date</div>
-                <div></div>
-            </li>
-            {props.files.map((file) => (
-                <li
-                    key={file.id}
-                    className={fileListModule.fileListItem}
-                >
-                    <div className={fileListModule.fileName}>{file.name}</div>
-                    {file.size && <div className={fileListModule.fileSize}>{file.size}B</div>}
-                    {file.uploadDate && <div className={fileListModule.Filemodified}>{(new Date(file.uploadDate)).toLocaleDateString('en-US', {
-                        day: '2-digit',
-                        month: '2-digit',
-                        year: 'numeric'
-                        })}</div>}
-                    <button className={fileListModule.deleteFile} onClick={() => removeFileHandler(props.projectId, file.id)}>Delete</button>
-                </li>
-            ))}
-        </ul>
-    );
+  return (
+    <ul className={fileListModule.fileList}>
+      <li key="header" className={fileListModule.fileListHeader}>
+        <div>Name</div>
+        <div>Size</div>
+        <div>Upload Date</div>
+        <div></div>
+      </li>
+      {props.files.map((file) => (
+        <li key={file.id} className={fileListModule.fileListItem}>
+          <div className={fileListModule.fileName}>{file.name}</div>
+          {file.size && <div className={fileListModule.fileSize}>{file.size}B</div>}
+          {file.uploadDate && (
+            <div className={fileListModule.Filemodified}>
+              {new Date(file.uploadDate).toLocaleDateString('en-US', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+              })}
+            </div>
+          )}
+          <button
+            className={fileListModule.deleteFile}
+            onClick={() => removeFileHandler(props.projectId, file.id)}
+          >
+            Delete
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
 };
 
 export default FileList;

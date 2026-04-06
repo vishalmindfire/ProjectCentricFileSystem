@@ -60,7 +60,7 @@ function LoginForm() {
           data-testid="password-input"
         />
       </div>
-      <InputBox name="login" id="login" value="Log In" type="submit" data-testid="login-button"/>
+      <InputBox name="login" id="login" value="Log In" type="submit" data-testid="login-button" />
     </form>
   );
 }

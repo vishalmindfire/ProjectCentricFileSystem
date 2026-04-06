@@ -1,12 +1,11 @@
 import { Outlet } from 'react-router';
 import { ProjectProvider } from '@contexts/ProjectContext';
-const  ProjectsLayout = () => {
+const ProjectsLayout = () => {
   return (
     <ProjectProvider>
-      <Outlet/>
+      <Outlet />
     </ProjectProvider>
-  )
-}
+  );
+};
 
 export default ProjectsLayout;
-

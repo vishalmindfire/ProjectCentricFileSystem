@@ -5,7 +5,7 @@ const logErrorToServer = async (errorDetail: ErrorDetail, user: User | null) => 
   const API_URL = import.meta.env.VITE_API_URL;
   const { error, errorInfo, context } = errorDetail;
   let loginUser = user;
-  if(user === null){
+  if (user === null) {
     loginUser = JSON.parse(localStorage.getItem('user') || 'null');
   }
   const errorData = {
