@@ -13,6 +13,10 @@
   width: 380px;
   height: 35px;
   margin: 5px auto;
+  
+  @media screen and (max-width: 600px) {
+    width: 300px;
+  }
 }
 .input-box-button,
 .input-box-submit {
@@ -31,4 +35,11 @@
   width: 380px;
   margin: 5px auto;
   color: var(--error-color);
+}
+
+@media screen and (max-width: 600px) {
+  .input-box-label.input-box-modal,
+  .input-box-input.input-box-modal{
+    width: 260px;
+  }
 }

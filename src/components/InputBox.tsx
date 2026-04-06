@@ -5,12 +5,14 @@ interface InputBoxProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string | null;
   type: string;
+  modal?: boolean;
 }
 
 const InputBox = ({ label, error, ...props }: InputBoxProps) => {
   const inputClasses = cx(inputBoxModule.inputBoxInput, {
     [inputBoxModule.inputBoxButton]: props.type === 'button',
     [inputBoxModule.inputBoxSubmit]: props.type === 'submit',
+    [inputBoxModule.inputBoxModal]: props.modal === true,
   });
   return (
     <div className={inputBoxModule.inputBoxWrapper}>

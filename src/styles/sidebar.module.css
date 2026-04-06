@@ -21,4 +21,9 @@
   li {
     cursor: pointer;
   }
+
+  @media screen and (max-width: 600px) {
+    display: flex;
+    gap: 5px;
+  }
 }

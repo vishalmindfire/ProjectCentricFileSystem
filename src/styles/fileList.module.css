@@ -8,7 +8,7 @@
 .file-list-header {
   background-color: var(--bg-color);
   color: #fff;
-
+    
   div {
     padding: 5px;
     text-align: center;
@@ -49,4 +49,44 @@
       background-color: var(--bg-color);
     }
   }
+}
+
+@media screen and (max-width: 990px) {
+    .file-list-header {
+        display: none;
+    }
+    .file-list-item {
+        flex-direction: column;
+
+        .file-name {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+
+            .fileColBody {
+                min-width: 180px;
+                word-wrap: break-word;
+            }
+        }
+        .file-size {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+        .file-modified {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+        .file-delete {
+            width: 100%;
+            min-width: 100px;
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+    }
 }

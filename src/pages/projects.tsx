@@ -34,7 +34,6 @@ function Projects(): React.ReactNode {
   };
   const openProjectHandler = useCallback(
     (event: React.MouseEvent<Element>, id: number) => {
-      console.log(event);
       navigate(`/projects/${id}`);
     },
     [navigate]

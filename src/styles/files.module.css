@@ -13,3 +13,13 @@
     width: calc(100% - 300px);
   }
 }
+
+@media screen and (max-width: 600px) {
+    .files-container {
+        flex-direction: column;
+    
+        .files-section {
+            width: 100%;
+        }
+    }
+}

@@ -58,6 +58,7 @@ function ProjectForm(props: Props) {
           defaultValue="test"
           error={nameError}
           data-testid="project-name-input"
+          modal={true}
         />
         <InputBox
           label="Description"
@@ -67,6 +68,7 @@ function ProjectForm(props: Props) {
           defaultValue="test"
           error={descError}
           data-testid="project-desc-input"
+          modal={true}
         />
       </div>
       <InputBox name="projectAdd" id="projectAdd" value="Create" type="submit" />
