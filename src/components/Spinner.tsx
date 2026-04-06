@@ -1,4 +1,10 @@
+import spinnerModule from '@styles/spinner.module.css';
+
 const Spinner = () => {
-  return <div>loading</div>;
+  return (
+    <div className={spinnerModule.loaderBody}>
+      <div className={spinnerModule.loader}></div>
+    </div>
+  );
 };
 export default Spinner;
