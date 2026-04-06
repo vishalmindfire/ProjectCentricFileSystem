@@ -6,10 +6,10 @@ import Spinner from '@components/Spinner';
 function Login() {
   const navigate = useNavigate();
   const { isAuthenticated, isLoading } = useAuth();
-  console.log('Login', isAuthenticated, isLoading);
+
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/', { replace: true });
+      navigate('/projects', { replace: true });
     }
   }, [isAuthenticated]);
 
