@@ -13,7 +13,7 @@
   width: 380px;
   height: 35px;
   margin: 5px auto;
-  
+
   @media screen and (max-width: 600px) {
     width: 300px;
   }
@@ -39,7 +39,7 @@
 
 @media screen and (max-width: 600px) {
   .input-box-label.input-box-modal,
-  .input-box-input.input-box-modal{
+  .input-box-input.input-box-modal {
     width: 260px;
   }
 }

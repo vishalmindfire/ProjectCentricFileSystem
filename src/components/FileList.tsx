@@ -33,49 +33,38 @@ const FileList = (props: FileListProps) => {
       {props.files.map((file) => (
         <li key={file.id} className={fileListModule.fileListItem}>
           <div className={fileListModule.fileName}>
-            <div className={fileListModule.fileColHead}>
-                File
-            </div>
-            <div className={fileListModule.fileColBody}>
-                {file.name}
-            </div>
+            <div className={fileListModule.fileColHead}>File</div>
+            <div className={fileListModule.fileColBody}>{file.name}</div>
           </div>
-          {file.size && 
+          {file.size && (
             <div className={fileListModule.fileSize}>
-                <div className={fileListModule.fileColHead}>
-                    Size
-                </div>
-                <div className={fileListModule.fileColBody}>
-                    {file.size}B
-                </div>
-            </div>}
+              <div className={fileListModule.fileColHead}>Size</div>
+              <div className={fileListModule.fileColBody}>{file.size}B</div>
+            </div>
+          )}
           {file.uploadDate && (
             <div className={fileListModule.fileModified}>
-                <div className={fileListModule.fileColHead}>
-                    Upload Date
-                </div>
-                <div className={fileListModule.fileColBody}>
-                    {new Date(file.uploadDate).toLocaleDateString('en-US', {
-                        day: '2-digit',
-                        month: '2-digit',
-                        year: 'numeric',
-                    })}
-                </div>
+              <div className={fileListModule.fileColHead}>Upload Date</div>
+              <div className={fileListModule.fileColBody}>
+                {new Date(file.uploadDate).toLocaleDateString('en-US', {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: 'numeric',
+                })}
+              </div>
             </div>
           )}
           <div className={fileListModule.fileButton}>
-                <div className={fileListModule.fileColHead}>
-                    
-                </div>
-                <div className={fileListModule.fileColBody}>
-                    <button
-                        className={fileListModule.deleteFile}
-                        onClick={() => removeFileHandler(props.projectId, file.id)}
-                    >
-                        Delete
-                    </button>
-                </div>
+            <div className={fileListModule.fileColHead}></div>
+            <div className={fileListModule.fileColBody}>
+              <button
+                className={fileListModule.deleteFile}
+                onClick={() => removeFileHandler(props.projectId, file.id)}
+              >
+                Delete
+              </button>
             </div>
+          </div>
         </li>
       ))}
     </ul>

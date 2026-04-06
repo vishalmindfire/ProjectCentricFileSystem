@@ -7,7 +7,7 @@
   background-color: #e2e5e6;
   gap: 10px;
   margin: 10px;
- 
+
   @media screen and (max-width: 600px) {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
@@ -15,69 +15,69 @@
 }
 
 .project-detail {
-    display: flex;
-    flex-direction: column;
-    grid-column: 1 / 3;
-    grid-row: 1 / 3;
-    background-color: #fff;
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+  background-color: #fff;
+  padding: 10px;
 
-    @media screen and (max-width: 600px) {
-        grid-column: 1 / 5;
-        grid-row: 1 / 1;
-    }
+  @media screen and (max-width: 600px) {
+    grid-column: 1 / 5;
+    grid-row: 1 / 1;
+  }
 }
 
 .project-detail .description {
-    text-align: left;
-    margin: 5px;
-    padding: 5px;
+  text-align: left;
+  margin: 5px;
+  padding: 5px;
 }
 
 .project-files-container {
-    grid-column: 3 / 5;
-    grid-row: 1 / 5;
-    background-color: rgb(243, 248, 243);
-    @media screen and (max-width: 600px) {
-        grid-column: 1 / 5;
-        grid-row: 3 / 4;
-    }
+  grid-column: 3 / 5;
+  grid-row: 1 / 5;
+  background-color: rgb(243, 248, 243);
+  @media screen and (max-width: 600px) {
+    grid-column: 1 / 5;
+    grid-row: 3 / 4;
+  }
 }
 .project-files-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 5px;
-    padding: 5px;
-    font-size: 22px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px;
+  padding: 5px;
+  font-size: 22px;
 }
 
 .project-files-title {
-    font-size: 22px;
-    margin-left: 10px;
+  font-size: 22px;
+  margin-left: 10px;
 }
 .project-files-count {
-    margin-right: 15px;
-    border-radius: 30px;
-    width: 85px;
-    height: 40px;
-    line-height: 34px;
-    background-color: #d6d0d0;
-    @media screen and (max-width: 600px) {
-        border-radius: 20px;
-        width: 40px;
-        height: 26px;
-        line-height: 25px;
-        font-size: 16px;
-    }
+  margin-right: 15px;
+  border-radius: 30px;
+  width: 85px;
+  height: 40px;
+  line-height: 34px;
+  background-color: #d6d0d0;
+  @media screen and (max-width: 600px) {
+    border-radius: 20px;
+    width: 40px;
+    height: 26px;
+    line-height: 25px;
+    font-size: 16px;
+  }
 }
 
 .project-jobs-container {
-    grid-column: 1 / 3;
-    grid-row: 3 / 5;
-    background-color: #fff;
-    @media screen and (max-width: 600px) {
-        grid-column: 1 / 5;
-        grid-row: 4 / 5;
-    }
+  grid-column: 1 / 3;
+  grid-row: 3 / 5;
+  background-color: #fff;
+  @media screen and (max-width: 600px) {
+    grid-column: 1 / 5;
+    grid-row: 4 / 5;
+  }
 }
