@@ -1,4 +1,3 @@
-import { useState } from "react";
 import progressBarModule from '@styles/progressBar.module.css';
 
 interface Props {

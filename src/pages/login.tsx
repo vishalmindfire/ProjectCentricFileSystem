@@ -11,7 +11,7 @@ function Login() {
     if (isAuthenticated) {
       navigate('/projects', { replace: true });
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, navigate]);
 
   return <>{!isLoading && isAuthenticated ? <Spinner /> : <LoginForm />}</>;
 }

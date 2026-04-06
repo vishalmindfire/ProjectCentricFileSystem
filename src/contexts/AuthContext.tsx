@@ -26,7 +26,7 @@ const AuthProvider = (props: ProviderProps): React.ReactNode => {
     if (!state.isAuthenticated) {
       isAuthenticated(dispatch);
     }
-  }, []);
+  }, [state.isAuthenticated]);
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>

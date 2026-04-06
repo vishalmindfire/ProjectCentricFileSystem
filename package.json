@@ -53,6 +53,6 @@
     "vite-plugin-mkcert": "^1.17.10"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix"
+    "*.{js,ts,tsx}": "eslint --cache --fix"
   }
 }

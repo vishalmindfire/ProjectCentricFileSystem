@@ -24,7 +24,7 @@ function Projects(): React.ReactNode {
         setIsLoading(false);
     }
     fetchProjects();
-  },[])
+  },[dispatch])
 
   const openModal = () => {
     setShowModal(true);

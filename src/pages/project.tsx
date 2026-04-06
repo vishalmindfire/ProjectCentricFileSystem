@@ -24,7 +24,7 @@ export default function ProjectPage() {
             await getFiles(projectId, dispatch);
         }
         fetchFiles();    
-    },[isLoading])
+    },[isLoading,projectId, dispatch])
 
     const fileUploadHandler = () => {
         navigate('files');
