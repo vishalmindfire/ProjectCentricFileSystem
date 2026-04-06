@@ -7,7 +7,8 @@
 }
 .file-list-header {
   background-color: var(--bg-color);
-
+  color: #fff;
+  
   div {
     padding: 5px;
     text-align: center;
@@ -22,11 +23,23 @@
   margin: 5px;
 
   .file-name {
-    max-width: 240px;
+    width: 40%;
+    text-align: left;
+  }
+  .file-size {
+    width: 20%;
+  }
+  .file-modified {
+    width: 20%;
+  }
+  .file-delete-header {
+    width: 15%;
+    min-width: 100px;
   }
   .delete-file {
     height: 30px;
-    width: 100px;
+    width: 15%;
+    min-width: 100px;
     font-size: 16px;
     font-weight: 300;
     padding: 5px;

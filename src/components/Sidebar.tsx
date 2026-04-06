@@ -1,25 +1,26 @@
 import cx from 'classnames';
 import sidebarModule from '@styles/sidebar.module.css';
+import { useNavigate } from 'react-router';
 
 type sidebarProps = {
   isMenuCollapsed: boolean;
 };
-const Sidebar = (sidebarProps: sidebarProps) => {
+
+const Sidebar = ({ isMenuCollapsed}: sidebarProps) => {
+  const navigate = useNavigate();
+  
   const menuClasses = cx(sidebarModule.menu, {
-    [sidebarModule.menuCollapsed]: sidebarProps.isMenuCollapsed,
+    [sidebarModule.menuCollapsed]: isMenuCollapsed,
   });
   return (
     <aside className={menuClasses}>
       <nav className={sidebarModule.menuContainer}>
         <ul className={sidebarModule.menuList}>
           <li>
-            <a href="/">Home</a>
+            <a onClick= {()=> { navigate("/") }}>Home</a>
           </li>
           <li>
-            <a href="/projects">Projects</a>
-          </li>
-          <li>
-            <a href="/files">Files</a>
+            <a onClick= {()=> { navigate("/projects") }}>Projects</a>
           </li>
           <li>
             <a href="/settings">Settings</a>

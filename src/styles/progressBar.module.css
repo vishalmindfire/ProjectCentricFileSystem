@@ -1,6 +1,7 @@
 .progress-bar {
   border: 1px solid silver;
   background: #ededed;
+  width: 100%;
 
   .progress-bar-completed {
     background-color: #8787f7;

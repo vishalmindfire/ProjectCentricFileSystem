@@ -25,17 +25,17 @@ const FileList = (props: FileListProps) => {
   return (
     <ul className={fileListModule.fileList}>
       <li key="header" className={fileListModule.fileListHeader}>
-        <div>Name</div>
-        <div>Size</div>
-        <div>Upload Date</div>
-        <div></div>
+        <div className={fileListModule.fileName}>Name</div>
+        <div className={fileListModule.fileSize}>Size</div>
+        <div className={fileListModule.fileModified}>Upload Date</div>
+        <div className={fileListModule.fileDeleteHeader}>&nbsp;</div>
       </li>
       {props.files.map((file) => (
         <li key={file.id} className={fileListModule.fileListItem}>
           <div className={fileListModule.fileName}>{file.name}</div>
           {file.size && <div className={fileListModule.fileSize}>{file.size}B</div>}
           {file.uploadDate && (
-            <div className={fileListModule.Filemodified}>
+            <div className={fileListModule.fileModified}>
               {new Date(file.uploadDate).toLocaleDateString('en-US', {
                 day: '2-digit',
                 month: '2-digit',

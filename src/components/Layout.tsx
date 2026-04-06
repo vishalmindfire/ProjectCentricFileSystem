@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import cx from 'classnames';
 import Header from '@components/Header';
@@ -9,18 +9,18 @@ import { AuthProvider } from '@contexts/AuthContext';
 
 export default function Layout() {
   const [isMenuCollapsed, setIsMenuCollapsed] = useState<boolean>(false);
-  const mainClasses = cx(layoutModule.main, {
-    [layoutModule.mainFull]: useState(isMenuCollapsed),
-  });
-  const showHideMenu = (show: boolean) => {
-    setIsMenuCollapsed(show);
-  };
+  
+  useEffect(() => {
+
+  },[isMenuCollapsed])
   return (
     <AuthProvider>
       <div className={layoutModule.appContainer}>
-        <Header showHideMenu={showHideMenu} isHidden={isMenuCollapsed} />
+        <Header showHideMenu={() => { setIsMenuCollapsed(!isMenuCollapsed)}} isHidden={isMenuCollapsed} />
         <Sidebar isMenuCollapsed={isMenuCollapsed} />
-        <main className={mainClasses}>
+        <main className={cx(layoutModule.main, {
+          [layoutModule.mainFull]: isMenuCollapsed,
+        })}>
           <Outlet />
         </main>
         <Footer />

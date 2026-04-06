@@ -17,4 +17,8 @@
   list-style-type: none;
   padding-inline-start: 5px;
   margin-block-start: 5px;
+
+  li {
+    cursor: pointer;
+  }
 }

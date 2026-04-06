@@ -5,18 +5,16 @@ import headerModule from '@styles/header.module.css';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router';
 interface HeaderProps {
-  showHideMenu: (show: boolean) => void;
+  showHideMenu: () => void;
   isHidden: boolean;
   title?: string;
 }
 
-const Header = ({ showHideMenu, isHidden, title = 'Project Centric File System' }: HeaderProps) => {
+const Header = ({ showHideMenu, title = 'Project Centric File System' }: HeaderProps) => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
   const { dispatch } = useContext(AuthContext);
-  const handleMenuCollapseClick = () => {
-    showHideMenu(!isHidden);
-  };
+
   const logInClickHandler = () => {
     navigate('/login');
   };
@@ -29,7 +27,7 @@ const Header = ({ showHideMenu, isHidden, title = 'Project Centric File System' 
   return (
     <header className={headerModule.header}>
       <div className={headerModule.headerContainer}>
-        <span className={headerModule.logo} onClick={handleMenuCollapseClick}>
+        <span className={headerModule.logo} onClick={ () => {showHideMenu();}}>
           PCFS
         </span>
         <h1 className={headerModule.headerTitle}>{title}</h1>
@@ -37,7 +35,7 @@ const Header = ({ showHideMenu, isHidden, title = 'Project Centric File System' 
         {isAuthenticated && <span onClick={logoutClickHandler}>Logout</span>}
       </div>
     </header>
-  );
-};
+  )
+}
 
 export default Header;
