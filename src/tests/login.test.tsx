@@ -5,14 +5,14 @@ import { routes } from '@routes/routes';
 import * as authService from '@services/authService';
 import * as ReactRouterDOM from 'react-router-dom';
 
-const mockNavigate = jest.fn();
+const mockedUseNavigate = jest.fn();
 
 jest.mock('@services/authService');
 jest.mock('react-router-dom', () => {
-  const actual = jest.requireActual('react-router-dom') as typeof ReactRouterDOM;
+  const originalModule = jest.requireActual('react-router-dom') as typeof ReactRouterDOM;
   return {
-    ...actual,
-    useNavigate: () => mockNavigate,
+    ...originalModule,
+    useNavigate: () => mockedUseNavigate,
   };
 });
 
@@ -35,24 +35,24 @@ describe('Login form', () => {
   });
 
   const getElements = () => ({
-    loginButton: screen.getByTestId('login-button'),
+    logInButton: screen.getByTestId('login-button'),
     emailInput: screen.getByTestId('email-input'),
     passwordInput: screen.getByTestId('password-input'),
   });
 
   test('shows error when email is empty', async () => {
-    const { loginButton } = getElements();
+    const { logInButton } = getElements();
 
-    fireEvent.click(loginButton);
+    fireEvent.click(logInButton);
 
     expect(await screen.findByText('Email is required')).toBeInTheDocument();
   });
 
   test('shows error when password is empty', async () => {
-    const { loginButton, emailInput } = getElements();
+    const { logInButton, emailInput } = getElements();
 
-    fireEvent.change(emailInput, { target: { value: 'admin@mail.com' } });
-    fireEvent.click(loginButton);
+    fireEvent.change(emailInput, { target: { value: 'john@mail.com' } });
+    fireEvent.click(logInButton);
 
     expect(await screen.findByText('Password is required')).toBeInTheDocument();
   });
@@ -63,14 +63,14 @@ describe('Login form', () => {
       user: { id: '1', name: 'Admin', email: 'admin@mail.com' },
     });
 
-    const { loginButton, emailInput, passwordInput } = getElements();
+    const { logInButton, emailInput, passwordInput } = getElements();
 
     fireEvent.change(emailInput, { target: { value: 'admin@mail.com' } });
     fireEvent.change(passwordInput, { target: { value: 'admin123' } });
-    fireEvent.click(loginButton);
+    fireEvent.click(logInButton);
 
     await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith('/projects', { replace: true });
+      expect(mockedUseNavigate).toHaveBeenCalledWith('/projects', { replace: true });
     });
   });
 });
