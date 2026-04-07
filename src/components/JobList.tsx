@@ -29,11 +29,14 @@ const JobList = (props: JobListProps) => {
               progress: res.jobStatus.progress,
               completedAt: res.jobStatus.completedAt,
             };
-            dispatch({ type: 'UPDATE_JOB', payload: { projectId: props.projectId, jobs: [newJob] } });
+            dispatch({
+              type: 'UPDATE_JOB',
+              payload: { projectId: props.projectId, jobs: [newJob] },
+            });
           }
         }, 2000);
         intervals.push(interval);
-        console.log(intervals)
+        console.log(intervals);
       }
     });
 

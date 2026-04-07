@@ -108,6 +108,25 @@ const ProjectsReducer = (state: ProjectsState, action: ProjectsAction): Projects
       localStorage.setItem('projects', JSON.stringify(allProjects));
       return { projects: allProjects, isLoading: false };
     }
+    case 'UPDATE_JOB': {
+      const allProjects = state?.projects?.map((project) => {
+        if (project.id === action.payload.projectId) {
+          const jobs = Array.isArray(project.Jobs) ? project.Jobs : [];
+          const updatedJobs = jobs.map((job) => {
+            const updatedJob = action.payload.jobs.find((newJob) => newJob.id === job.id);
+            return updatedJob ?? job;
+          });
+          return {
+            ...project,
+            Jobs: updatedJobs,
+          };
+        } else {
+          return project;
+        }
+      });
+      localStorage.setItem('projects', JSON.stringify(allProjects));
+      return { projects: allProjects, isLoading: false };
+    }
     case 'SET_PROJECTS': {
       return { projects: action.payload.projects, isLoading: false };
     }

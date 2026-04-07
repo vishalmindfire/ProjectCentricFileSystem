@@ -1,4 +1,4 @@
-type jobStatus = "PENDING" | "PROCESSING" | "COMPLETED" | "FAILED";
+type jobStatus = 'PENDING' | 'PROCESSING' | 'COMPLETED' | 'FAILED';
 interface Job {
   id: number;
   status: jobStatus;
