@@ -27,7 +27,7 @@ const ProjectProvider = (props: ProviderProps): React.ReactNode => {
       await getProjects(dispatch);
     };
     getAllProjects();
-  }, [state.isLoading]);
+  }, []);
 
   return (
     <ProjectContext.Provider value={{ projectsState: state, dispatch }}>

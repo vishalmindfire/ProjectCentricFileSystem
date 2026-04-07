@@ -22,9 +22,12 @@ const mockedIsAuthenticated = jest.mocked(authService.isAuthenticated);
 describe('Login form', () => {
   let router: ReturnType<typeof createMemoryRouter>;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     jest.clearAllMocks();
-    mockedIsAuthenticated.mockResolvedValue(false);
+    mockedIsAuthenticated.mockImplementation(async (dispatch) => {
+      dispatch({ type: 'LOGOUT' });
+      return false;
+    });
 
     router = createMemoryRouter([routes], {
       initialEntries: ['/login'],
@@ -32,6 +35,10 @@ describe('Login form', () => {
     });
 
     render(<RouterProvider router={router} />);
+
+    await waitFor(() => {
+      expect(screen.getByTestId('login-button')).toBeInTheDocument();
+    });
   });
 
   const getElements = () => ({
