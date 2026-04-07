@@ -133,7 +133,7 @@ export const downloadJobData = async (
   };
   try {
     if (apiEnabled) {
-      const response = await fetch(`${API_URL}/project/${projectId}/jobs/create/${projectId}`, {
+      const response = await fetch(`${API_URL}/project/${projectId}/jobs/create/${jobId}`, {
         method: 'POST',
         credentials: 'include',
         headers: {
