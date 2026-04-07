@@ -24,7 +24,7 @@ function ProjectForm(props: Props) {
       setNameError(null);
     }
     if (!projectDesc.value) {
-      setDescError('Password is required');
+      setDescError('Description is required');
       return;
     } else {
       setDescError(null);
