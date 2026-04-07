@@ -6,7 +6,7 @@ import Login from '@pages/login';
 import Projects from '@pages/projects';
 import Project from '@pages/project';
 import ErrorPage from '@pages/error';
-import ErrorNotFoundPage from 'pages/errorNotFound';
+import ErrorNotFoundPage from '@pages/errorNotFound';
 import type { RouteObject } from 'react-router';
 import Files from '@pages/files';
 export const routes: RouteObject = {

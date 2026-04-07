@@ -4,8 +4,7 @@ import logErrorToServer from '@services/errorLogger';
 import { type ErrorDetail } from '@entities/Error';
 
 const API_URL = import.meta.env.VITE_API_URL;
-const apiEnabled = import.meta.env.VITE_API_ENABLED === true;
-console.log(apiEnabled === false);
+const apiEnabled = import.meta.env.VITE_API_ENABLED == true;
 interface createdResponse {
   success: boolean;
   project: { id: number; name: string; description: string };

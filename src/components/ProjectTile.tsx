@@ -14,8 +14,8 @@ interface ProjectTileProps {
 
 const ProjectTile = (props: ProjectTileProps) => {
   const { dispatch } = useContext(ProjectContext);
-  const deleteProjectHandler = (id: number) => {
-    deleteProject(id, dispatch);
+  const deleteProjectHandler = async (id: number) => {
+    await deleteProject(id, dispatch);
   };
 
   return (

@@ -28,7 +28,7 @@ const AuthProvider = (props: ProviderProps): React.ReactNode => {
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
-      {state.isAuthenticated && state.isLoading ? <Spinner /> : props.children}
+      {state.isLoading ? <Spinner /> : props.children}
     </AuthContext.Provider>
   );
 };

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import DragAndDropBox from '@components/DragAndDrop';
 import ProgressBar from '@components/ProgressBar';
 import InputBox from '@components/InputBox';
@@ -18,7 +18,6 @@ const Files = () => {
   const savedfiles = useFiles(projectId);
   const { isLoading } = useProject(projectId);
   const { dispatch } = useContext(ProjectContext);
-  useEffect(() => {}, []);
 
   const fileUploadHandler = async () => {
     setProgress(0);

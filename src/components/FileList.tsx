@@ -2,7 +2,7 @@ import fileListModule from '@styles/fileList.module.css';
 import { type FileInfo } from '@entities/File';
 import { deleteFile } from '@services/fileService';
 import { ProjectContext } from '@contexts/ProjectContext';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 type FileListProps = {
   files: FileInfo[];
@@ -17,8 +17,6 @@ const FileList = (props: FileListProps) => {
   const removeFileHandler = (id: number, fileId: number) => {
     deleteFile(id, fileId, dispatch);
   };
-
-  useEffect(() => {}, [props.files]);
 
   if (!props.files || props.files.length === 0) {
     return <div className={fileListModule.empty}>No files found</div>;

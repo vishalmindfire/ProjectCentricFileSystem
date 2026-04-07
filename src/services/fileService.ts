@@ -122,6 +122,11 @@ export const uploadFile = async (
           uploadDate: new Date(),
         });
       });
+
+      const payload = {
+        projectId: id,
+        files: newFiles,
+      };
       let counter = 0;
       const target = 100;
       const step = 1;
@@ -133,10 +138,6 @@ export const uploadFile = async (
           clearInterval(intervalId);
         }
       }, 50);
-      const payload = {
-        projectId: id,
-        files: newFiles,
-      };
 
       resolve({ success: true });
     }

@@ -101,7 +101,7 @@ export const getJobStatus = async (
   };
   try {
     if (apiEnabled) {
-      const response = await fetch(`${API_URL}/project/${jobId}/jobs/create/${projectId}`, {
+      const response = await fetch(`${API_URL}/project/${projectId}/jobs/create/${jobId}`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -133,7 +133,7 @@ export const downloadJobData = async (
   };
   try {
     if (apiEnabled) {
-      const response = await fetch(`${API_URL}/project/${jobId}/jobs/create/${projectId}`, {
+      const response = await fetch(`${API_URL}/project/${projectId}/jobs/create/${projectId}`, {
         method: 'POST',
         credentials: 'include',
         headers: {

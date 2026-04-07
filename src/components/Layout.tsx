@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import cx from 'classnames';
 import Header from '@components/Header';
@@ -10,7 +10,6 @@ import { AuthProvider } from '@contexts/AuthContext';
 export default function Layout() {
   const [isMenuCollapsed, setIsMenuCollapsed] = useState<boolean>(false);
 
-  useEffect(() => {}, [isMenuCollapsed]);
   return (
     <AuthProvider>
       <div className={layoutModule.appContainer}>

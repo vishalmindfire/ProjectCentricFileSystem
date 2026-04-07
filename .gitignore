@@ -14,6 +14,7 @@ dist-ssr
 #enviroment files
 .env
 .env.*
+.eslintcache
 
 # Editor directories and files
 .vscode/*
