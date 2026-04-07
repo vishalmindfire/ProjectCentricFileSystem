@@ -112,4 +112,8 @@ describe('Project detail page — create job', () => {
       expect(mockedCreateJob).toHaveBeenCalledWith(1, [mockFile.id], expect.any(Function));
     });
   });
+<<<<<<< Updated upstream
 });
+=======
+});
+>>>>>>> Stashed changes
