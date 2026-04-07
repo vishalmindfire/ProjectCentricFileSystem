@@ -33,7 +33,7 @@ function Projects(): React.ReactNode {
     setShowModal(false);
   };
   const openProjectHandler = useCallback(
-    (event: React.MouseEvent<Element>, id: number) => {
+    (id: number) => {
       navigate(`/projects/${id}`);
     },
     [navigate]
@@ -56,8 +56,8 @@ function Projects(): React.ReactNode {
                     filesCounts={project.filesCount}
                     jobCounts={project.jobsCount}
                     createDate={project.createDate}
-                    onClick={(e: React.MouseEvent<Element>) => {
-                      return openProjectHandler(e, project.id);
+                    onClick={() => {
+                      return openProjectHandler(project.id);
                     }}
                   ></ProjectTile>
                 );

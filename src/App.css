@@ -4,5 +4,7 @@
   --border-color: #becce7;
   --bg-color: #aa3bff;
   --bg-secondary-color: #241c51;
+  --bg-disabled-color: rgb(102, 95, 95);
+  --disable-color: rgb(249, 235, 235);
   --error-color: #db4141;
 }

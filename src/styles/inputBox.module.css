@@ -29,6 +29,10 @@
     background-color: var(--bg-color);
     cursor: pointer;
   }
+  &:disabled {
+    background-color: var(--bg-disabled-color);
+    color: var(--disable-color);
+  }
 }
 .input-box-error {
   text-align: left;

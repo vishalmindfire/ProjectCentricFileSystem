@@ -23,10 +23,8 @@ const AuthContext = createContext<{
 const AuthProvider = (props: ProviderProps): React.ReactNode => {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
   React.useEffect(() => {
-    if (!state.isAuthenticated) {
-      isAuthenticated(dispatch);
-    }
-  }, [state.isAuthenticated]);
+    isAuthenticated(dispatch);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>

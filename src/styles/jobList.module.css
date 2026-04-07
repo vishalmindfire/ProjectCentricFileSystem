@@ -1,11 +1,11 @@
-.file-list {
+.job-list {
   display: flex;
   flex-direction: column;
   flex-direction: column;
   justify-content: space-between;
   padding-left: 15px;
 }
-.file-list-header {
+.job-list-header {
   background-color: var(--bg-color);
   color: #fff;
 
@@ -14,36 +14,29 @@
     text-align: center;
   }
 }
-.file-list-header,
-.file-list-item {
+.job-list-header,
+.job-list-item {
   display: flex;
   flex-direction: row;
   margin-right: 10px;
   justify-content: space-between;
   margin: 5px;
 
-  .file-checkbox {
-    width: 25px;
-    margin-right: 5px;
-
-    .file-checkbox-input {
-      width: 15px;
-      height: 20px;
-    }
-  }
-  .file-name {
-    width: 40%;
-    text-align: left;
-  }
-  .file-size,
-  .file-modified {
-    width: 20%;
-  }
-  .file-delete-header {
+  .job-id,
+  .job-status,
+  .job-progress,
+  .job-created-at,
+  .job-completed-at {
     width: 15%;
+  }
+  .job-col-head {
+    display: none;
+  }
+  .job-download-header {
+    width: 10%;
     min-width: 100px;
   }
-  .delete-file {
+  .job-download-button {
     height: 30px;
     width: 15%;
     min-width: 100px;
@@ -55,44 +48,55 @@
     &:hover {
       background-color: var(--bg-color);
     }
-  }
-  .file-col-head {
-    display: none;
+    &:disabled {
+      background-color: var(--bg-disabled-color);
+      color: var(--disable-color);
+    }
   }
 }
 
 @media screen and (max-width: 990px) {
-  .file-list-header {
+  .job-list-header {
     display: none;
   }
-  .file-list-item {
+  .job-list-item {
     flex-direction: column;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
 
-    .file-name,
-    .file-size,
-    .file-modified {
+    .job-id,
+    .job-status,
+    .job-progress,
+    .job-completed-at,
+    .job-created-at {
       width: 100%;
       display: flex;
       justify-content: flex-start;
       padding: 5px 0;
 
-      .file-col-head {
+      .job-col-head {
         width: 30%;
         text-align: left;
         display: block;
       }
-      .file-col-body {
+      .job-col-body {
         text-align: left;
         word-wrap: break-word;
         margin-left: 5px;
       }
     }
-    .file-delete {
+    .job-download {
       width: 100%;
       min-width: 100px;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       padding: 5px 0;
+
+      .job-col-head {
+        display: none;
+      }
     }
   }
 }

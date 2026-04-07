@@ -1,9 +1,10 @@
+type jobStatus = "PENDING" | "PROCESSING" | "COMPLETED" | "FAILED";
 interface Job {
   id: number;
-  status: string;
+  status: jobStatus;
   progress: number;
   createdAt: Date;
-  CompletedAt: Date;
+  completedAt?: Date;
 }
 
 export { type Job };

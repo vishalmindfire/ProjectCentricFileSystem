@@ -8,6 +8,8 @@ type FileListProps = {
   files: FileInfo[];
   projectId: number;
   isLoading: boolean;
+  showSelection?: boolean;
+  checkboxChangeEvent?: () => void;
 };
 
 const FileList = (props: FileListProps) => {
@@ -25,6 +27,7 @@ const FileList = (props: FileListProps) => {
   return (
     <ul className={fileListModule.fileList}>
       <li key="header" className={fileListModule.fileListHeader}>
+        {props.showSelection && <div className={fileListModule.fileCheckbox}></div>}
         <div className={fileListModule.fileName}>Name</div>
         <div className={fileListModule.fileSize}>Size</div>
         <div className={fileListModule.fileModified}>Upload Date</div>
@@ -32,6 +35,17 @@ const FileList = (props: FileListProps) => {
       </li>
       {props.files.map((file) => (
         <li key={file.id} className={fileListModule.fileListItem}>
+          {props.showSelection && (
+            <div className={fileListModule.fileCheckbox}>
+              <input
+                type="checkbox"
+                name="jobFile"
+                value={file.id}
+                className={fileListModule.fileCheckboxInput}
+                onChange={() => props.checkboxChangeEvent?.()}
+              />
+            </div>
+          )}
           <div className={fileListModule.fileName}>
             <div className={fileListModule.fileColHead}>File</div>
             <div className={fileListModule.fileColBody}>{file.name}</div>

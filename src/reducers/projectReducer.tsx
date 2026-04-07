@@ -12,7 +12,8 @@ type ProjectsAction =
   | { type: 'REMOVE_PROJECT'; payload: Project['id'] }
   | { type: 'ADD_FILE'; payload: { projectId: Project['id']; files: FileInfo[] | [] } }
   | { type: 'REMOVE_FILE'; payload: { projectId: Project['id']; fileId: FileInfo['id'] } }
-  | { type: 'ADD_JOB'; payload: { projectId: Project['id']; job: Job } }
+  | { type: 'ADD_JOB'; payload: { projectId: Project['id']; jobs: Job[] | [] } }
+  | { type: 'UPDATE_JOB'; payload: { projectId: Project['id']; jobs: Job[] | [] } }
   | { type: 'SET_PROJECTS'; payload: { projects: Project[] | [] } }
   | { type: 'GET_PROJECTS' };
 
@@ -43,7 +44,6 @@ const ProjectsReducer = (state: ProjectsState, action: ProjectsAction): Projects
       return { projects: allProjects, isLoading: false };
     }
     case 'ADD_FILE': {
-      console.log('File', action.payload.files);
       const allProjects = state?.projects?.map((project) => {
         if (project.id === action.payload.projectId) {
           const files = Array.isArray(project.Files) ? project.Files : [];
@@ -77,6 +77,29 @@ const ProjectsReducer = (state: ProjectsState, action: ProjectsAction): Projects
             ...project,
             Files: [...filesArray],
             filesCount: filesArray.length,
+          };
+        } else {
+          return project;
+        }
+      });
+      localStorage.setItem('projects', JSON.stringify(allProjects));
+      return { projects: allProjects, isLoading: false };
+    }
+    case 'ADD_JOB': {
+      const allProjects = state?.projects?.map((project) => {
+        if (project.id === action.payload.projectId) {
+          const jobs = Array.isArray(project.Jobs) ? project.Jobs : [];
+          const filterNewJobs = action.payload.jobs.filter((newJob) => {
+            const existingJob = jobs.filter((job) => newJob.id === job.id) || [];
+            if (existingJob.length) {
+              return false;
+            } else {
+              return true;
+            }
+          });
+          return {
+            ...project,
+            Jobs: [...jobs, ...filterNewJobs],
           };
         } else {
           return project;
