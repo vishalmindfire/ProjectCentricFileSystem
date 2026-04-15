@@ -23,6 +23,12 @@ interface jobStatusResponse {
   jobStatus?: jobStatus;
 }
 
+interface jobZipResponse {
+  success: boolean;
+  file?: globalThis.Blob;
+  fileName?: string;
+}
+
 interface jobResponseType {
   completed_at: Date | null;
   created_at: Date;
@@ -174,16 +180,16 @@ export const getJobStatus = async (
 };
 
 export const downloadJobData = async (
-  jobId: Job['id'],
-  projectId: Project['id']
-): Promise<jobStatusResponse> => {
-  let responseDetail: jobStatusResponse = {
+  projectId: Project['id'],
+  jobId: Job['id']
+): Promise<jobZipResponse> => {
+  let responseDetail: jobZipResponse = {
     success: false,
   };
   try {
     if (apiEnabled) {
       const response = await fetch(`${API_URL}/projects/${projectId}/jobs/${jobId}/download`, {
-        method: 'POST',
+        method: 'GET',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
@@ -192,10 +198,17 @@ export const downloadJobData = async (
       if (response.status !== 200) {
         throw new Error('Job status fetch failed');
       }
-      const data = await response.json();
+      const contentDisposition = response.headers.get('Content-Disposition');
+      const fileName = contentDisposition
+        ? contentDisposition.split('filename=')[1].replace(/"/g, '')
+        : `zip_${projectId}_${jobId}.zip`;
+      const data = await response.blob();
+      console.log(typeof data);
+
       responseDetail = {
         success: true,
-        jobStatus: data,
+        file: data,
+        fileName: fileName,
       };
     }
     return responseDetail;

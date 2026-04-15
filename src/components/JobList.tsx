@@ -14,7 +14,18 @@ type JobListProps = {
 const JobList = (props: JobListProps) => {
   const { dispatch } = useContext(ProjectContext);
   const downloadHandler = async (projectId: Project['id'], jobId: Job['id']) => {
-    await downloadJobData(projectId, jobId);
+    const data = await downloadJobData(projectId, jobId);
+
+    if (data?.file && data?.fileName) {
+      const url = window.URL.createObjectURL(data.file);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', data.fileName);
+      document.body.appendChild(link);
+      link.click();
+      (link.parentNode as HTMLElement).removeChild(link);
+      window.URL.revokeObjectURL(url);
+    }
   };
   useEffect(() => {
     const intervals: NodeJS.Timeout[] = [];

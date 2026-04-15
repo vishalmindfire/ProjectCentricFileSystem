@@ -58,7 +58,7 @@ const ProjectsReducer = (state: ProjectsState, action: ProjectsAction): Projects
           return {
             ...project,
             Files: [...filterNewfiles, ...files],
-            filesCount: project.filesCount + action.payload.files.length,
+            filesCount: filterNewfiles.length + files.length,
           };
         } else {
           return project;
@@ -100,6 +100,7 @@ const ProjectsReducer = (state: ProjectsState, action: ProjectsAction): Projects
           return {
             ...project,
             Jobs: [...jobs, ...filterNewJobs],
+            jobsCount: jobs.length + filterNewJobs.length,
           };
         } else {
           return project;

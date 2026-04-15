@@ -25,7 +25,9 @@ const ProjectProvider = (props: ProviderProps): React.ReactNode => {
     const getAllProjects = async () => {
       await getProjects(dispatch);
     };
-    getAllProjects();
+    if (state.isLoading) {
+      getAllProjects();
+    }
   }, []);
 
   return (

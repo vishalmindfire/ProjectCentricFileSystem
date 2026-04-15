@@ -33,12 +33,14 @@ export default function ProjectPage() {
 
   useEffect(() => {
     const fetchFiles = async () => {
-      await getProject(projectId, dispatch);
-      await getFiles(projectId, dispatch);
-      await getJobs(projectId, dispatch);
+      if (isLoading) {
+        await getProject(projectId, dispatch);
+        await getFiles(projectId, dispatch);
+        await getJobs(projectId, dispatch);
+      }
     };
     fetchFiles();
-  }, [projectId, dispatch]);
+  }, [projectId]);
 
   const openModal = () => {
     setShowModal(true);

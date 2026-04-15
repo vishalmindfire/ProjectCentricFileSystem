@@ -25,8 +25,10 @@ const Files = () => {
       await getProject(projectId, dispatch);
       await getFiles(projectId, dispatch);
     };
-    fetchFiles();
-  }, [projectId, dispatch]);
+    if (isLoading) {
+      fetchFiles();
+    }
+  }, [projectId]);
 
   const fileUploadHandler = async () => {
     setProgress(0);
