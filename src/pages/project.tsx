@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from 'react-router';
+import { createPortal } from 'react-dom';
 import FileList from '@components/FileList';
 import JobList from '@components/JobList';
 import projectModule from '@styles/project.module.css';
@@ -14,6 +15,7 @@ import { useJobs } from '@hooks/useJobs';
 import InputBox from '@components/InputBox';
 import type { FileInfo } from '@entities/File';
 import { createJob } from '@services/jobService';
+import Modal from '@components/Modal';
 
 export default function ProjectPage() {
   const { id } = useParams();
@@ -23,6 +25,8 @@ export default function ProjectPage() {
   const { project, isLoading } = useProject(projectId);
   const { dispatch } = useContext(ProjectContext);
   const [jobFiles, setJobFiles] = useState<FileInfo['id'][]>([]);
+  const [missingFiles, setMissingFiles] = useState<FileInfo[]>([]);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,11 +38,26 @@ export default function ProjectPage() {
     fetchFiles();
   }, [projectId, dispatch]);
 
+  const openModal = () => {
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   const fileUploadHandler = () => {
     navigate('files');
   };
   const createJobHandler = async () => {
-    await createJob(projectId, jobFiles, dispatch);
+    const data = await createJob(projectId, jobFiles, dispatch, false);
+    if (data?.missingFiles) {
+      setMissingFiles(data.missingFiles);
+      openModal();
+    }
+  };
+  const createJobHandlerForced = async () => {
+    closeModal();
+    await createJob(projectId, jobFiles, dispatch, true);
   };
   const filesCheckedChangeHandler = useCallback(() => {
     const checkedBoxes = document.querySelectorAll('input[name="jobFile"]:checked');
@@ -108,6 +127,33 @@ export default function ProjectPage() {
           </div>
         )
       )}
+      {showModal &&
+        createPortal(
+          <Modal
+            title="Delete File"
+            type="confirm"
+            open="true"
+            onClose={closeModal}
+            onSubmit={() => {
+              createJobHandlerForced();
+            }}
+          >
+            <div className={projectModule.confirmBox}>
+              <div className={projectModule.confirmBoxContent}>
+                This files are missing and hence cannot be archived.
+              </div>
+              <ul className={projectModule.missingFileList}>
+                {missingFiles.map((missingFile) => (
+                  <li key={missingFile.id} className={projectModule.missingFileItem}>
+                    {files.filter((file) => file.id == missingFile.id)[0].name}
+                  </li>
+                ))}
+              </ul>
+              <div>Are you sure you wanna continue?</div>
+            </div>
+          </Modal>,
+          document.body
+        )}
     </>
   );
 }

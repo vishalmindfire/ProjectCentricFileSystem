@@ -61,7 +61,7 @@ describe('Project detail page — create job', () => {
       return { success: true, projects: [mockProject] };
     });
 
-    mockedGetProject.mockResolvedValue({ success: true, project: [mockProject] });
+    mockedGetProject.mockResolvedValue({ success: true, project: mockProject });
     mockedGetFiles.mockResolvedValue({ success: true, files: [mockFile] });
     mockedGetJobs.mockResolvedValue({ success: true, jobs: [] });
 
@@ -96,7 +96,7 @@ describe('Project detail page — create job', () => {
     mockedCreateJob.mockImplementation(async (projectId, _files, dispatch) => {
       const newJob = { id: 999, status: 'PENDING' as const, progress: 0, createdAt: new Date() };
       dispatch({ type: 'ADD_JOB', payload: { projectId, jobs: [newJob] } });
-      return true;
+      return { success: true };
     });
 
     const checkbox = screen.getByRole('checkbox');
@@ -109,7 +109,7 @@ describe('Project detail page — create job', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Create new job' }));
 
     await waitFor(() => {
-      expect(mockedCreateJob).toHaveBeenCalledWith(1, [mockFile.id], expect.any(Function));
+      expect(mockedCreateJob).toHaveBeenCalledWith(1, [mockFile.id], expect.any(Function), false);
     });
   });
 });

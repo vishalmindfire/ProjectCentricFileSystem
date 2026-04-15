@@ -17,7 +17,7 @@ interface uploadResponse {
   success: boolean;
 }
 
-interface FileResponseType {
+export interface FileResponseType {
   created_at: Date;
   id: number;
   mime_type: string;
