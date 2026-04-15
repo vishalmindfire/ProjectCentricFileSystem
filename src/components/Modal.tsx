@@ -20,7 +20,9 @@ const Modal = (props: ModalProps) => {
         })}
       >
         <header className={modalModule.modalBoxHeader}>
-          <span className={modalModule.modalBoxTitle}>{props.title}</span>
+          <span className={modalModule.modalBoxTitle}>
+            {props.type === 'message' ? 'Message' : props.title}
+          </span>
           <button onClick={props.onClose} className={modalModule.modalCloseButton}>
             ✖
           </button>
@@ -29,6 +31,9 @@ const Modal = (props: ModalProps) => {
           {props.children}
           {props?.type === 'confirm' && (
             <InputBox type="submit" value="Confirm" onClick={props.onSubmit} />
+          )}
+          {props?.type === 'message' && (
+            <InputBox type="submit" value="OK" onClick={props.onClose} />
           )}
         </div>
       </div>

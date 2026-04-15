@@ -27,6 +27,8 @@ export default function ProjectPage() {
   const [jobFiles, setJobFiles] = useState<FileInfo['id'][]>([]);
   const [missingFiles, setMissingFiles] = useState<FileInfo[]>([]);
   const [showModal, setShowModal] = useState(false);
+  const [modalType, setModalType] = useState('');
+  const [modalMessage, setModalMessage] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,9 +51,14 @@ export default function ProjectPage() {
     navigate('files');
   };
   const createJobHandler = async () => {
-    const data = await createJob(projectId, jobFiles, dispatch, false);
+    const data = await createJob(projectId, jobFiles, dispatch, false).catch((error) => {
+      setModalType('message');
+      setModalMessage(error.message);
+      openModal();
+    });
     if (data?.missingFiles) {
       setMissingFiles(data.missingFiles);
+      setModalType('confirm');
       openModal();
     }
   };
@@ -131,26 +138,29 @@ export default function ProjectPage() {
         createPortal(
           <Modal
             title="Delete File"
-            type="confirm"
+            type={modalType}
             open="true"
             onClose={closeModal}
             onSubmit={() => {
               createJobHandlerForced();
             }}
           >
-            <div className={projectModule.confirmBox}>
-              <div className={projectModule.confirmBoxContent}>
-                This files are missing and hence cannot be archived.
+            {modalType === 'confirm' && (
+              <div className={projectModule.confirmBox}>
+                <div className={projectModule.confirmBoxContent}>
+                  This files are missing and hence cannot be archived.
+                </div>
+                <ul className={projectModule.missingFileList}>
+                  {missingFiles.map((missingFile) => (
+                    <li key={missingFile.id} className={projectModule.missingFileItem}>
+                      {files.filter((file) => file.id == missingFile.id)[0].name}
+                    </li>
+                  ))}
+                </ul>
+                <div>Are you sure you wanna continue?</div>
               </div>
-              <ul className={projectModule.missingFileList}>
-                {missingFiles.map((missingFile) => (
-                  <li key={missingFile.id} className={projectModule.missingFileItem}>
-                    {files.filter((file) => file.id == missingFile.id)[0].name}
-                  </li>
-                ))}
-              </ul>
-              <div>Are you sure you wanna continue?</div>
-            </div>
+            )}
+            {modalType === 'message' && <div>{modalMessage}</div>}
           </Modal>,
           document.body
         )}

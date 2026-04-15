@@ -111,8 +111,8 @@ export const createJob = async (
         });
         return { missingFiles: missingFiles, success: false };
       }
-      if (response.status !== 202) {
-        throw new Error('Job creation failed');
+      if (response.status !== 202 && !data.success) {
+        throw new Error(data.message);
       }
       newJob = [
         {
