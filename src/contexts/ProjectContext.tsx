@@ -1,7 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 import { type ProjectsState, type ProjectsAction, ProjectsReducer } from '@reducers/projectReducer';
 import { getProjects } from '@services/projectService';
-//import { getProjects } from "@services/projectService";
 
 type ProviderProps = {
   children: React.ReactNode;

@@ -1,5 +1,6 @@
 import modalModule from '@styles/modal.module.css';
-import InputBox from './InputBox';
+import InputBox from '@components/InputBox';
+import cx from 'classnames';
 
 interface ModalProps {
   title: string;
@@ -13,7 +14,11 @@ interface ModalProps {
 const Modal = (props: ModalProps) => {
   return (
     <div id="modal-box" className={modalModule.modalBox}>
-      <div className={modalModule.modalBoxContent}>
+      <div
+        className={cx(modalModule.modalBoxContent, {
+          [modalModule.confirmBoxContent]: props.type === 'confirm',
+        })}
+      >
         <header className={modalModule.modalBoxHeader}>
           <span className={modalModule.modalBoxTitle}>{props.title}</span>
           <button onClick={props.onClose} className={modalModule.modalCloseButton}>

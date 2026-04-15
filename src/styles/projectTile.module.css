@@ -44,3 +44,7 @@
 .project-tile-footer {
   text-align: right;
 }
+.confirm-box {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}

@@ -17,7 +17,7 @@ export const login = async (
 
   try {
     console.log(API_URL);
-    const response = await fetch(`${API_URL}/login`, {
+    const response = await fetch(`${API_URL}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(bodyContent),
@@ -38,15 +38,15 @@ export const login = async (
 };
 
 export const logout = async (dispatch: React.Dispatch<AuthAction>): Promise<boolean> => {
-  await fetch(`${API_URL}/logout`, { method: 'GET', credentials: 'include' });
+  await fetch(`${API_URL}/auth/logout`, { method: 'GET', credentials: 'include' });
   dispatch({ type: 'LOGOUT' });
   return true;
 };
 
 export const isAuthenticated = async (dispatch: React.Dispatch<AuthAction>): Promise<boolean> => {
   try {
-    const response = await fetch(`${API_URL}/checkAuth`, {
-      method: 'GET',
+    const response = await fetch(`${API_URL}/auth/checkAuth`, {
+      method: 'POST',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',

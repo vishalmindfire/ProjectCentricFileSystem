@@ -135,6 +135,10 @@ describe('Projects page', () => {
 
       fireEvent.click(screen.getByText('Delete'));
 
+      expect(screen.getByText('Delete Project')).toBeInTheDocument();
+
+      fireEvent.click(screen.getByText('Confirm'));
+
       await waitFor(() => {
         expect(mockedDeleteProject).toHaveBeenCalledWith(mockProject.id, expect.any(Function));
         expect(screen.queryByText('Test Project')).not.toBeInTheDocument();
