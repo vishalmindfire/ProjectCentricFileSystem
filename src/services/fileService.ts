@@ -6,7 +6,7 @@ import type { Project } from '@entities/Project';
 import type { ProjectsAction } from '@reducers/projectReducer';
 
 const API_URL = import.meta.env.VITE_API_URL;
-const apiEnabled = import.meta.env.VITE_API_ENABLED == true;
+const apiEnabled = import.meta.env.VITE_API_ENABLED;
 
 interface filesResponse {
   success: boolean;
@@ -24,7 +24,7 @@ export const getFiles = async (
   try {
     let files: FileInfo[] | [] = [];
     if (apiEnabled) {
-      const response = await fetch(`${API_URL}/project/${id}/files`, {
+      const response = await fetch(`${API_URL}/projects/${id}/files`, {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -56,7 +56,7 @@ export const deleteFile = async (
 ): Promise<boolean> => {
   try {
     if (apiEnabled) {
-      const response = await fetch(`${API_URL}/project/${id}/file/${fileId}`, {
+      const response = await fetch(`${API_URL}/projects/${id}/file/${fileId}`, {
         method: 'DELETE',
         credentials: 'include',
         headers: {

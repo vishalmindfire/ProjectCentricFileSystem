@@ -43,6 +43,7 @@ export const createProject = async (
     Files: [],
     Jobs: [],
   };
+  let updatedProject: projectResponseType;
   try {
     if (apiEnabled) {
       const bodyContent = {
@@ -62,7 +63,17 @@ export const createProject = async (
       if (!response.ok || !data.success) {
         throw new Error('Project creation Failed');
       }
-      project = data.project;
+      updatedProject = data.project;
+      project = {
+        id: updatedProject.id,
+        name: updatedProject.name,
+        description: updatedProject.description,
+        createDate: updatedProject.created_at,
+        jobsCount: updatedProject.jobs_count,
+        filesCount: updatedProject.files_count,
+        Files: [],
+        Jobs: [],
+      };
     }
 
     const data = {
