@@ -17,6 +17,7 @@ const Modal = (props: ModalProps) => {
       <div
         className={cx(modalModule.modalBoxContent, {
           [modalModule.confirmBoxContent]: props.type === 'confirm',
+          [modalModule.messageBoxContent]: props.type === 'message',
         })}
       >
         <header className={modalModule.modalBoxHeader}>

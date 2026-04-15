@@ -16,7 +16,6 @@ export const login = async (
   };
 
   try {
-    console.log(API_URL);
     const response = await fetch(`${API_URL}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -25,9 +24,8 @@ export const login = async (
     });
 
     const data = await response.json();
-    console.log(data);
     if (!response.ok || !data.success) {
-      throw new Error('Login Failed');
+      throw new Error(data?.message || 'Invalid Credentials');
     }
     dispatch({ type: 'LOGIN', payload: { user: data.user } });
     return { success: true, user: data.user };
