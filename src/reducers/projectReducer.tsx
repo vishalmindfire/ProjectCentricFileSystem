@@ -33,7 +33,7 @@ const ProjectsReducer = (state: ProjectsState, action: ProjectsAction): Projects
         Files: [],
         Jobs: [],
       };
-      const allProjects: Project[] = [...state.projects, project];
+      const allProjects: Project[] = [project, ...state.projects];
 
       localStorage.setItem('projects', JSON.stringify(allProjects));
       return { projects: allProjects, isLoading: false };
@@ -57,7 +57,7 @@ const ProjectsReducer = (state: ProjectsState, action: ProjectsAction): Projects
           });
           return {
             ...project,
-            Files: [...files, ...filterNewfiles],
+            Files: [...filterNewfiles, ...files],
             filesCount: project.filesCount + action.payload.files.length,
           };
         } else {
