@@ -133,6 +133,10 @@ describe('Files page', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Delete' }));
 
+    expect(screen.getByText('Delete File')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Confirm' }));
+
     await waitFor(() => {
       expect(mockedDeleteFile).toHaveBeenCalledWith(1, 101, expect.any(Function));
       expect(screen.queryByText('document.pdf')).not.toBeInTheDocument();

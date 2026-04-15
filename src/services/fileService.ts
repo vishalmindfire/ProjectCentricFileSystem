@@ -6,7 +6,7 @@ import type { Project } from '@entities/Project';
 import type { ProjectsAction } from '@reducers/projectReducer';
 
 const API_URL = import.meta.env.VITE_API_URL;
-const apiEnabled = import.meta.env.VITE_API_ENABLED == true;
+const apiEnabled = import.meta.env.VITE_API_ENABLED;
 
 interface filesResponse {
   success: boolean;
@@ -17,6 +17,15 @@ interface uploadResponse {
   success: boolean;
 }
 
+interface FileResponseType {
+  created_at: Date;
+  id: number;
+  mime_type: string;
+  name: string;
+  project_id: number;
+  size: number;
+  storage_path: string;
+}
 export const getFiles = async (
   id: Project['id'],
   dispatch: React.Dispatch<ProjectsAction>
@@ -24,7 +33,7 @@ export const getFiles = async (
   try {
     let files: FileInfo[] | [] = [];
     if (apiEnabled) {
-      const response = await fetch(`${API_URL}/project/${id}/files`, {
+      const response = await fetch(`${API_URL}/projects/${id}/files`, {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -35,7 +44,14 @@ export const getFiles = async (
       if (!response.ok || !data.success) {
         throw new Error('Project creation Failed');
       }
-      files = data.files;
+      files = data.files.map((projectFile: FileResponseType) => {
+        return {
+          id: projectFile.id,
+          name: projectFile.name,
+          size: projectFile.size,
+          uploadDate: projectFile.created_at,
+        };
+      });
     }
     const payload = {
       projectId: id,
@@ -56,7 +72,7 @@ export const deleteFile = async (
 ): Promise<boolean> => {
   try {
     if (apiEnabled) {
-      const response = await fetch(`${API_URL}/project/${id}/file/${fileId}`, {
+      const response = await fetch(`${API_URL}/projects/${id}/files/${fileId}`, {
         method: 'DELETE',
         credentials: 'include',
         headers: {
@@ -81,15 +97,15 @@ export const uploadFile = async (
   id: Project['id'],
   dispatch: React.Dispatch<ProjectsAction>
 ): Promise<uploadResponse> => {
-  console.log(apiEnabled);
   return new Promise((resolve, reject) => {
     if (apiEnabled) {
       const formData = new FormData();
       Array.from(files).forEach((file) => {
-        console.log(file);
-        formData.append('file', file); // Use the same field name for all files
+        formData.append('files', file); // Use the same field name for all files
       });
       const xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+      xhr.responseType = 'json';
       xhr.upload.addEventListener('progress', (e) => {
         if (e.lengthComputable) {
           const percentComplete = (e.loaded / e.total) * 100;
@@ -98,7 +114,20 @@ export const uploadFile = async (
       });
 
       xhr.addEventListener('load', () => {
-        if (xhr.status === 200) {
+        if (xhr.status === 201) {
+          const newFiles: FileInfo[] = xhr.response.files.map((newFile: FileResponseType) => {
+            return {
+              id: newFile.id,
+              name: newFile.name,
+              uploadDate: newFile.created_at,
+              size: newFile.size,
+            };
+          });
+          const payload = {
+            projectId: id,
+            files: newFiles,
+          };
+          dispatch({ type: 'ADD_FILE', payload: payload });
           resolve({ success: true });
         } else {
           resolve({ success: false });
@@ -110,7 +139,7 @@ export const uploadFile = async (
         reject(error);
       });
 
-      xhr.open('POST', `${API_URL}/upload`);
+      xhr.open('POST', `${API_URL}/projects/${id}/files`);
       xhr.send(formData);
     } else {
       const newFiles: FileInfo[] = [];

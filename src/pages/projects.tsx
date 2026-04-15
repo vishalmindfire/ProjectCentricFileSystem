@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useContext } from 'react';
+import { useState, useCallback, type MouseEvent } from 'react';
 import { createPortal } from 'react-dom';
 import ProjectTile from '@components/ProjectTile';
 import projectModule from '@styles/projects.module.css';
@@ -7,24 +7,12 @@ import Modal from '@components/Modal';
 import ProjectForm from '@components/ProjectForm';
 import { useProjects } from '@hooks/useProjects';
 import { useNavigate } from 'react-router';
-import { getProjects } from '@services/projectService';
-import { ProjectContext } from '@contexts/ProjectContext';
 import Spinner from '@components/Spinner';
 
 function Projects(): React.ReactNode {
-  const [isLoading, setIsLoading] = useState(true);
-  const { projects } = useProjects();
-  const { dispatch } = useContext(ProjectContext);
+  const { projects, isLoading } = useProjects();
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      await getProjects(dispatch);
-      setIsLoading(false);
-    };
-    fetchProjects();
-  }, [dispatch]);
 
   const openModal = () => {
     setShowModal(true);
@@ -33,8 +21,10 @@ function Projects(): React.ReactNode {
     setShowModal(false);
   };
   const openProjectHandler = useCallback(
-    (id: number) => {
-      navigate(`/projects/${id}`);
+    (id: number, event: MouseEvent<Element>) => {
+      if ((event.target as HTMLElement)?.id !== 'delete-project') {
+        navigate(`/projects/${id}`);
+      }
     },
     [navigate]
   );
@@ -56,8 +46,8 @@ function Projects(): React.ReactNode {
                     filesCounts={project.filesCount}
                     jobCounts={project.jobsCount}
                     createDate={project.createDate}
-                    onClick={() => {
-                      return openProjectHandler(project.id);
+                    onClick={(event) => {
+                      return openProjectHandler(project.id, event);
                     }}
                   ></ProjectTile>
                 );

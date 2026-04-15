@@ -19,6 +19,12 @@
     width: 80%;
   }
 }
+.modal-box-content.confirm-box-content {
+  width: 30%;
+  @media screen and (max-width: 600px) {
+    width: 50%;
+  }
+}
 .modal-box-header {
   background-color: #241c51;
   height: 35px;
