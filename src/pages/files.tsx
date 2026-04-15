@@ -1,9 +1,10 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import DragAndDropBox from '@components/DragAndDrop';
 import ProgressBar from '@components/ProgressBar';
 import InputBox from '@components/InputBox';
 import FileList from '@components/FileList';
 import { getFiles, uploadFile } from '@services/fileService';
+import { getProject } from '@services/projectService';
 import filesModule from '@styles/files.module.css';
 import { useFiles } from '@hooks/useFiles';
 import { useProject } from '@hooks/useProject';
@@ -18,6 +19,14 @@ const Files = () => {
   const savedfiles = useFiles(projectId);
   const { isLoading } = useProject(projectId);
   const { dispatch } = useContext(ProjectContext);
+
+  useEffect(() => {
+    const fetchFiles = async () => {
+      await getProject(projectId, dispatch);
+      await getFiles(projectId, dispatch);
+    };
+    fetchFiles();
+  }, [projectId, dispatch]);
 
   const fileUploadHandler = async () => {
     setProgress(0);
