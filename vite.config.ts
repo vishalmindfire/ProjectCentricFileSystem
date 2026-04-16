@@ -10,6 +10,9 @@ export default defineConfig({
     },
     tsconfigPaths: true,
   },
+  build: {
+    outDir: 'dist',
+  },
   css: {
     modules: {
       localsConvention: 'camelCase', // or 'camelCaseOnly', 'dashes'
