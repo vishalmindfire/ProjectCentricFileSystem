@@ -55,23 +55,27 @@ function ProjectForm(props: Props) {
           name="projectName"
           id="projectName"
           type="text"
-          defaultValue="test"
+          defaultValue=""
           error={nameError}
           data-testid="project-name-input"
           modal={true}
+          placeholder=" "
         />
         <InputBox
           label="Description"
           name="projectDesc"
           id="projectDesc"
           type="text"
-          defaultValue="test"
+          defaultValue=""
           error={descError}
           data-testid="project-desc-input"
           modal={true}
+          placeholder=" "
         />
       </div>
-      <InputBox name="projectAdd" id="projectAdd" value="Create" type="submit" />
+      <div className={projectFormModule.projectFormAction}>
+        <InputBox name="projectAdd" id="projectAdd" value="Create" type="submit" />
+      </div>
     </form>
   );
 }

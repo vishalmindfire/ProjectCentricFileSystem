@@ -90,3 +90,9 @@
     }
   }
 }
+.confirm-box {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding: 10px;
+  box-shadow: -1px 1px 8px 0px #4ecdc4;
+}

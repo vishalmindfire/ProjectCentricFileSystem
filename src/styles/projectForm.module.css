@@ -3,3 +3,12 @@
   flex-direction: column;
   justify-content: space-around;
 }
+.project-form-action {
+  max-width: 320px;
+  margin: 5px auto;
+}
+.project-form-body {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
