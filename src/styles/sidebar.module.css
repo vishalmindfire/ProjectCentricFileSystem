@@ -1,11 +1,36 @@
 .menu {
   grid-area: sidebar;
-  background-color: #f4e1e1;
-  border-radius: 10px;
+  background-color: #ffffff;
+  margin-top: 80px;
+  margin-left: 10px;
+  transition: transform 0.5s ease-in-out;
+  transform: scaleY(1);
+  transform-origin: top;
+  transition-delay: 0.2s;
+
+  &:before {
+    position: absolute;
+    display: block;
+    content: ' ';
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+    background-size: 200% 100%;
+    animation: gradientSlide 3s ease infinite;
+  }
+
+  &.menu-collapsed {
+    transition: transform 0.5s ease-in-out;
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  @media screen and (max-width: 600px) {
+    margin-right: 10px;
+  }
 }
-.menu.menu-collapsed {
-  display: none;
-}
+
 .menu-container {
   text-align: left;
 }
@@ -24,6 +49,7 @@
 
   @media screen and (max-width: 600px) {
     display: flex;
-    gap: 5px;
+    gap: 10px;
+    margin-right: 10px;
   }
 }

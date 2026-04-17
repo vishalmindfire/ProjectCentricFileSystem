@@ -5,6 +5,7 @@ import { ProjectContext } from '@contexts/ProjectContext';
 import { useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Modal from '@components/Modal';
+import InputBox from '@components/InputBox';
 
 type FileListProps = {
   files: FileInfo[];
@@ -83,9 +84,7 @@ const FileList = (props: FileListProps) => {
             <div className={fileListModule.fileButton}>
               <div className={fileListModule.fileColHead}></div>
               <div className={fileListModule.fileColBody}>
-                <button className={fileListModule.deleteFile} onClick={() => openModal(file.id)}>
-                  Delete
-                </button>
+                <InputBox onClick={() => openModal(file.id)} type="button" value="Delete" />
               </div>
             </div>
           </li>

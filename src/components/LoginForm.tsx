@@ -4,7 +4,9 @@ import { login } from '@services/authService';
 import { AuthContext } from '@contexts/AuthContext';
 import InputBox from '@components/InputBox';
 import { useNavigate } from 'react-router-dom';
+import { validateEmail, validatePassword } from '@utils/validator';
 import Modal from '@components/Modal';
+import LoginFormModule from '@styles/loginForm.module.css';
 
 function LoginForm() {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -21,24 +23,16 @@ function LoginForm() {
   const closeModal = () => {
     setShowModal(false);
   };
-
   const logIn = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const userEmail = emailRef.current?.value ?? '';
     const userPassword = passRef.current?.value ?? '';
-    if (!userEmail) {
-      setEmailError('Email is required');
+    let error = false;
+    error = !validateEmail({ value: userEmail, setError: setEmailError }) || error;
+    error = !validatePassword({ value: userPassword, setError: setPasswordError }) || error;
+    if (error) {
       return;
-    } else {
-      setEmailError(null);
     }
-    if (!userPassword) {
-      setPasswordError('Password is required');
-      return;
-    } else {
-      setPasswordError(null);
-    }
-
     const response = await login(userEmail, userPassword, dispatch).catch((err) => {
       setModalMessage(err.message);
       openModal();
@@ -48,37 +42,49 @@ function LoginForm() {
       navigate('/projects', { replace: true });
     }
   };
+
   return (
-    <>
-      <form onSubmit={logIn} className="login-form">
-        <div className="login-header">
+    <div className={LoginFormModule.loginContainer}>
+      <div className={LoginFormModule.loginContent}>
+        <div className={LoginFormModule.loginAccent}></div>
+        <div className={LoginFormModule.loginHeader}>
           <h1>Login</h1>
         </div>
-        <div className="login-body">
-          <InputBox
-            label="Email"
-            name="email"
-            id="email"
-            type="text"
-            error={emailError}
-            data-testid="email-input"
-            ref={emailRef}
-            defaultValue=""
-          />
-          <InputBox
-            label="Password"
-            name="password"
-            id="password"
-            type="password"
-            error={passwordError}
-            data-testid="password-input"
-            ref={passRef}
-            defaultValue=""
-          />
-        </div>
-        <InputBox name="login" id="login" value="Log In" type="submit" data-testid="login-button" />
-      </form>
+        <div className={LoginFormModule.loginBody}>
+          <form onSubmit={logIn} className={LoginFormModule.loginForm}>
+            <InputBox
+              label="Email Address"
+              name="email"
+              id="email"
+              type="text"
+              error={emailError}
+              data-testid="email-input"
+              ref={emailRef}
+              defaultValue=""
+              placeholder=" "
+            />
+            <InputBox
+              label="Password"
+              name="password"
+              id="password"
+              type="password"
+              error={passwordError}
+              data-testid="password-input"
+              ref={passRef}
+              defaultValue=""
+              placeholder=" "
+            />
 
+            <InputBox
+              name="login"
+              id="login"
+              value="Log In"
+              type="submit"
+              data-testid="login-button"
+            />
+          </form>
+        </div>
+      </div>
       {showModal &&
         createPortal(
           <Modal title="Message" type="message" open="true" onClose={closeModal}>
@@ -86,7 +92,7 @@ function LoginForm() {
           </Modal>,
           document.body
         )}
-    </>
+    </div>
   );
 }
 

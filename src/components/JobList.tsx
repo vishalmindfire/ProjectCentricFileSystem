@@ -104,8 +104,8 @@ const JobList = (props: JobListProps) => {
             </div>
           </div>
           <div className={jobListModule.jobDownload}>
-            <div className={jobListModule.fileColHead}></div>
-            <div className={jobListModule.fileColBody}>
+            <div className={jobListModule.jobColHead}></div>
+            <div className={jobListModule.jobColBody}>
               <button
                 className={jobListModule.jobDownloadButton}
                 onClick={() => downloadHandler(props.projectId, job.id)}

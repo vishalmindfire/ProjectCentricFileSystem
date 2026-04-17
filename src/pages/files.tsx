@@ -42,7 +42,9 @@ const Files = () => {
       <div className={filesModule.filesSettings}>
         <DragAndDropBox dropBoxType="DEFAULT" onSelectedFiles={setFiles} />
         <ProgressBar value={progress} max={100} label="File Uploading" />
-        <InputBox type="button" onClick={fileUploadHandler} value="Upload" />
+        <div className={filesModule.uploadButton}>
+          <InputBox type="button" onClick={fileUploadHandler} value="Upload" />
+        </div>
       </div>
       <div className={filesModule.filesSection}>
         <FileList files={savedfiles} projectId={projectId} isLoading={isLoading}></FileList>

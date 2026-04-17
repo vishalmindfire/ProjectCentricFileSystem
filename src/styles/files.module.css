@@ -1,7 +1,9 @@
 .files-container {
   display: flex;
   flex-direction: row;
-
+  margin-top: 20px;
+  margin-right: 10px;
+  gap: 10px;
   .files-settings {
     width: 300px;
     display: flex;
@@ -11,6 +13,11 @@
   }
   .files-section {
     width: calc(100% - 300px);
+    background-color: white;
+  }
+  .upload-button {
+    margin-top: 10px;
+    width: 100%;
   }
 }
 

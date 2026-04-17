@@ -32,29 +32,21 @@
     }
   }
   .file-name {
-    width: 40%;
+    width: 45%;
     text-align: left;
+    display: flex;
+    align-items: center;
   }
   .file-size,
   .file-modified {
     width: 20%;
+    display: flex;
+    align-items: center;
   }
-  .file-delete-header {
+  .file-delete-header,
+  .file-button {
     width: 15%;
     min-width: 100px;
-  }
-  .delete-file {
-    height: 30px;
-    width: 15%;
-    min-width: 100px;
-    font-size: 16px;
-    font-weight: 300;
-    padding: 5px;
-    background: var(--bg-secondary-color);
-    color: var(--secondary-color);
-    &:hover {
-      background-color: var(--bg-color);
-    }
   }
   .file-col-head {
     display: none;
@@ -74,12 +66,14 @@
       width: 100%;
       display: flex;
       justify-content: flex-start;
+      align-items: flex-start;
       padding: 5px 0;
 
       .file-col-head {
         width: 30%;
         text-align: left;
         display: block;
+        font-weight: 700;
       }
       .file-col-body {
         text-align: left;

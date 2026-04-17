@@ -23,17 +23,17 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "baseUrl": "src",
     "paths": {
-      "@components/*": ["components/*"],
-      "@pages/*": ["pages/*"],
-      "@routes/*": ["routes/*"],
-      "@hooks/*": ["hooks/*"],
-      "@contexts/*": ["contexts/*"],
-      "@reducers/*": ["reducers/*"],
-      "@services/*": ["services/*"],
-      "@entities/*": ["entities/*"],
-      "@styles/*": ["styles/*"]
+      "@components/*": ["./src/components/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@contexts/*": ["./src/contexts/*"],
+      "@reducers/*": ["./src/reducers/*"],
+      "@services/*": ["./src/services/*"],
+      "@entities/*": ["./src/entities/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@utils/*": ["./src/utils/*"]
     }
   },
   "include": ["src", "vite-env.d.ts", "./jest.setup.ts"]

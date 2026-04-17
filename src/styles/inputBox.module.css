@@ -1,44 +1,108 @@
 .input-box {
-  display: flex;
-  flex-direction: column; /* Stacks children vertically */
-  padding-top: 10px;
+  position: relative;
+  margin-bottom: 32px;
+}
+.input-box.input-box-delete {
+  margin-bottom: 5px;
+}
+.input-box-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #e2e8f0;
+  padding: 12px 0;
+  color: #2d3748;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: inherit;
+
+  &:focus {
+    border-bottom-color: transparent;
+  }
+  &:focus + .input-box-label,
+  &:not(:placeholder-shown) + .input-box-label {
+    top: -8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #4a5568;
+    transform: translateY(0);
+  }
 }
 .input-box-label {
-  color: black;
-  font-size: 24px;
-  text-align: left;
+  position: absolute;
+  left: 0;
+  top: 12px;
+  color: #a0aec0;
+  font-size: 16px;
+  font-weight: 400;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  transform-origin: left;
 }
-.input-box-label,
-.input-box-input {
-  width: 380px;
-  height: 35px;
-  margin: 5px auto;
 
-  @media screen and (max-width: 600px) {
-    width: 300px;
-  }
-}
 .input-box-button,
-.input-box-submit {
-  width: 185px;
-  font-size: 20px;
+.input-box-submit,
+.input-box-label.input-box-file-label {
+  width: 100%;
+  background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 24px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 16px;
   font-weight: 600;
-  background: var(--bg-secondary-color);
-  color: var(--secondary-color);
+  position: relative;
+  margin-bottom: 32px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:active {
+    transform: translateY(0);
+  }
   &:hover {
-    background-color: var(--bg-color);
-    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
   }
   &:disabled {
-    background-color: var(--bg-disabled-color);
-    color: var(--disable-color);
+    background: #cbd5e0;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+.input-box-button.input-box-delete-button,
+.input-box-label.input-box-file-label {
+  min-height: 42px;
+  margin: 0;
+  padding: 5px 24px;
+  height: 42px;
+  max-height: 42px;
+}
+.input-box.error {
+  .input-box-input {
+    border-bottom-color: #e53e3e;
+  }
+  .input-box-label {
+    color: #e53e3e;
   }
 }
 .input-box-error {
+  color: #e53e3e;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 8px;
+  opacity: 1;
   text-align: left;
-  width: 380px;
-  margin: 5px auto;
-  color: var(--error-color);
+  transform: translateY(0);
+  transition: all 0.2s ease;
 }
 
 @media screen and (max-width: 600px) {

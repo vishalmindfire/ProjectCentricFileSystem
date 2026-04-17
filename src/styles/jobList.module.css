@@ -36,21 +36,43 @@
     width: 10%;
     min-width: 100px;
   }
+  .job-download {
+    .job-col-body {
+      width: 100%;
+    }
+  }
   .job-download-button {
-    height: 30px;
-    width: 15%;
-    min-width: 100px;
+    width: 100%;
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-family: inherit;
     font-size: 16px;
-    font-weight: 300;
-    padding: 5px;
-    background: var(--bg-secondary-color);
-    color: var(--secondary-color);
+    font-weight: 600;
+    position: relative;
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:active {
+      transform: translateY(0);
+    }
     &:hover {
-      background-color: var(--bg-color);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
     }
     &:disabled {
-      background-color: var(--bg-disabled-color);
-      color: var(--disable-color);
+      background: #cbd5e0;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
     }
   }
 }
@@ -80,6 +102,7 @@
         width: 30%;
         text-align: left;
         display: block;
+        font-weight: 700;
       }
       .job-col-body {
         text-align: left;

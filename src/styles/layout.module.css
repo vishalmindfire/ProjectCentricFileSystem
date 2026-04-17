@@ -8,22 +8,31 @@
     'footer footer';
   min-height: 100vh;
   min-height: 100svh;
-  background-color: #e2e5e6;
   @media screen and (max-width: 600px) {
     grid-template-rows: auto auto 1fr auto;
+    grid-template-columns: 1fr;
     grid-template-areas:
-      'header header'
-      'sidebar sidebar'
-      'main main'
-      'footer footer';
+      'header'
+      'sidebar'
+      'main'
+      'footer';
   }
 }
 
 .main {
   grid-area: main;
+  margin-top: 70px;
+  transform: translateX(0);
+  grid-column: 2/4;
+  grid-template-columns: 2fr 0.5fr 0.5fr;
+
+  @media screen and (max-width: 600px) {
+    grid-column: 1/4;
+    margin-top: 0;
+  }
 }
 .main-full {
-  grid-column: 1/-1;
+  grid-column: 1 / 4;
 }
 @media screen and (max-width: 600px) {
 }

@@ -33,11 +33,9 @@ export default function ProjectPage() {
 
   useEffect(() => {
     const fetchFiles = async () => {
-      if (isLoading) {
-        await getProject(projectId, dispatch);
-        await getFiles(projectId, dispatch);
-        await getJobs(projectId, dispatch);
-      }
+      await getProject(projectId, dispatch);
+      await getFiles(projectId, dispatch);
+      await getJobs(projectId, dispatch);
     };
     fetchFiles();
   }, [projectId]);

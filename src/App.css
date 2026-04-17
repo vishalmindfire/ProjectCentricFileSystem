@@ -7,4 +7,14 @@
   --bg-disabled-color: rgb(102, 95, 95);
   --disable-color: rgb(249, 235, 235);
   --error-color: #db4141;
+  --coral: #ff6b6b; /* Coral accent */
+  --teal: #4ecdc4; /* Teal accent */
+  --blue: #45b7d1; /* Blue accent */
+  --mint: #96ceb4; /* Mint accent */
+  --text-primary: #2d3748; /* Primary text */
+  --text-secondary: #4a5568; /* Secondary text */
+  --text-muted: #718096; /* Muted text */
+  --background-glass: rgba(255, 255, 255, 0.95); /* Glass card */
+  --border-light: #e2e8f0; /* Light borders */
+  --error-red: #e53e3e; /* Error states */
 }
