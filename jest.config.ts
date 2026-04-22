@@ -19,6 +19,8 @@ const config: Config = {
     '^@entities/(.*)$': '<rootDir>/src/entities/$1',
     '^@reducers/(.*)$': '<rootDir>/src/reducers/$1',
     '^@routes/(.*)$': '<rootDir>/src/routes/$1',
+
+    '^@utils/(.*)$': '<rootDir>/src/utils/$1',
   },
   globals: {
     fetch: global.fetch,

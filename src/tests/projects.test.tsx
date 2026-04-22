@@ -76,7 +76,6 @@ describe('Projects page', () => {
     });
 
     test('shows error when project name is empty', async () => {
-      // ProjectForm renders with defaultValue="test" — clear it before submitting
       fireEvent.change(screen.getByTestId('project-name-input'), { target: { value: '' } });
       fireEvent.click(screen.getByRole('button', { name: 'Create' }));
 
@@ -84,7 +83,7 @@ describe('Projects page', () => {
     });
 
     test('shows error when project description is empty', async () => {
-      // Name keeps its default "test" value; clear only the description
+      fireEvent.change(screen.getByTestId('project-name-input'), { target: { value: 'test' } });
       fireEvent.change(screen.getByTestId('project-desc-input'), { target: { value: '' } });
       fireEvent.click(screen.getByRole('button', { name: 'Create' }));
 

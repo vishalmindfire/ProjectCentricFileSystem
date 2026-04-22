@@ -52,7 +52,7 @@ describe('Login form', () => {
 
     fireEvent.click(logInButton);
 
-    expect(await screen.findByText('Email is required')).toBeInTheDocument();
+    expect(await screen.findByText('Email address is required')).toBeInTheDocument();
   });
 
   test('shows error when password is empty', async () => {
