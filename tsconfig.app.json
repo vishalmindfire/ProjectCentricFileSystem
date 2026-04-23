@@ -36,5 +36,5 @@
       "@utils/*": ["./src/utils/*"]
     }
   },
-  "include": ["src", "vite-env.d.ts", "./jest.setup.ts"]
+  "include": ["src", "vite-env.d.ts", "src/jest.setup.ts"]
 }
